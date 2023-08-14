@@ -184,6 +184,7 @@ TEST(StringViewTest, compare)
 TEST(StringViewTest, operation2)
 {
     string_view sv1("123456");
+    string_view sv2("789");
 
     EXPECT_EQ(sv1.starts_with('1'), true);
     EXPECT_EQ(sv1.starts_with('2'), false);
@@ -200,6 +201,16 @@ TEST(StringViewTest, operation2)
     EXPECT_EQ(sv1.ends_with("45"), false);
     EXPECT_EQ(sv1.ends_with(""), true);
     EXPECT_EQ(sv1.ends_with("123456"), true);
+
+    EXPECT_EQ(sv1.contains('5'), true);
+    EXPECT_EQ(sv1.contains('a'), false);
+    EXPECT_EQ(sv1.contains("1"), true);
+    EXPECT_EQ(sv1.contains("2"), true);
+    EXPECT_EQ(sv1.contains("34"), true);
+    EXPECT_EQ(sv1.contains("123456"), true);
+    EXPECT_EQ(sv1.contains("7"), false);
+    EXPECT_EQ(sv1.contains(sv2), false);
+
 }
 
 TEST(StringViewTest, find)
@@ -723,6 +734,22 @@ TEST(StringViewTest, operation3)
     EXPECT_EQ(ch2 >= sv4, true);
     EXPECT_EQ(sv4 >= ch3, false);
     EXPECT_EQ(ch3 >= sv4, true);
+}
+
+TEST(StringViewTest, operation4)
+{
+    std::unordered_map<string_view, int> test;
+
+    string_view a1("1234567890");
+    string_view a2("12345");
+
+    test[a1] = 10;
+    test[a2] = 20;
+    EXPECT_EQ(test[a1], 10);
+    EXPECT_EQ(test[a2], 20);
+
+    test[a1] = 30;
+    EXPECT_EQ(test[a1], 30);
 }
 
 int main(int argc, char* argv[])
