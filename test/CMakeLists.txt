@@ -21,7 +21,7 @@ set(MAIN_PATH ${PROJECT_SOURCE_DIR}/..)
 set(SRC_PATH ${MAIN_PATH}/test)
 
 # depends 路径
-set(DEPENDS_PATH ${MAIN_PATH}/../depends)
+set(DEPENDS_PATH ${MAIN_PATH}/thirdparty)
 
 # set(CMAKE_VERBOSE_MAKEFILE on) # for message
 # debug release 编译方式
@@ -54,11 +54,11 @@ endif()
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 include_directories(${MAIN_PATH}/include)
-include_directories(${DEPENDS_PATH}/thirdparty/googletest/1.11.0/include)
+include_directories(${DEPENDS_PATH}/googletest/1.11.0/include)
 
 # LINK_DIRECTORIES(${MAIN_PATH}/lib/linux)
 LINK_DIRECTORIES(${BASE_LIB_PATH})
-LINK_DIRECTORIES(${DEPENDS_PATH}/thirdparty/googletest/1.11.0/lib/linux)
+LINK_DIRECTORIES(${DEPENDS_PATH}/googletest/1.11.0/lib/linux)
 
 # any
 add_executable(ut_any ${SRC_PATH}/ut_any.cpp)
@@ -105,9 +105,17 @@ add_executable(ut_range ${SRC_PATH}/ut_range.cpp)
 add_executable(ut_singleton ${SRC_PATH}/ut_singleton.cpp)
 target_link_libraries(ut_singleton pthread)
 
+# spsc_queue
+add_executable(ut_spsc_queue ${SRC_PATH}/ut_spsc_queue.cpp)
+target_link_libraries(ut_spsc_queue gtest pthread)
+
 # string_view
 add_executable(ut_string_view ${SRC_PATH}/ut_string_view.cpp)
 target_link_libraries(ut_string_view gtest pthread)
+
+# string
+add_executable(ut_string ${SRC_PATH}/ut_string.cpp)
+target_link_libraries(ut_string gtest pthread)
 
 # thread
 add_executable(ut_thread ${SRC_PATH}/ut_thread.cpp)

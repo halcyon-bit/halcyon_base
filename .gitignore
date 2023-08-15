@@ -37,6 +37,9 @@
 tmp
 win64_*
 
+# vscode
+.vscode
+
 # linux
 linux_*
 build

@@ -46,7 +46,7 @@ set(SRC_PATH ${MAIN_PATH}/src)
 set(INCLUDE_PATH ${MAIN_PATH}/include)
 
 # depends 路径
-set(DEPENDS_PATH ${MAIN_PATH}/../depends)
+set(DEPENDS_PATH ${MAIN_PATH}/thirdparty)
 
 # include
 include_directories(${INCLUDE_PATH})

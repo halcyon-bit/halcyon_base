@@ -41,7 +41,7 @@ BASE_BEGIN_NAMESPACE
  * 2. It will not produce the same results on little-endian and big-endian
  *    machines.
  */
-unsigned int genHashFunction(const void* key, int len)
+static inline unsigned int genHashFunction(const void* key, int len)
 {
     /* 'm' and 'r' are mixing constants generated offline.
      They're not really 'magic', they just happen to work well.  */

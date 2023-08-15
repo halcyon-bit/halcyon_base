@@ -66,11 +66,11 @@ private:
 void testMove()
 {
     BlockingQueue<std::unique_ptr<int32_t>> queue;
-    queue.put(std::unique_ptr<int32_t>(new int32_t(42)));
+    queue.push(std::unique_ptr<int32_t>(new int32_t(42)));
     std::unique_ptr<int32_t> x = queue.take();
     std::cout << "take " << *x << std::endl;
     *x = 123;
-    queue.put(std::move(x));
+    queue.push(std::move(x));
     std::unique_ptr<int32_t> y = queue.take();
     std::cout << "take " << *y << std::endl;
 }

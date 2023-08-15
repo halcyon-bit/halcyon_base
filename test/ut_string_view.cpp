@@ -2,6 +2,8 @@
 
 #include "gtest/gtest.h"
 
+#include <unordered_map>
+
 using namespace halcyon::base;
 
 TEST(StringViewTest, constructor)

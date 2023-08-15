@@ -3,10 +3,8 @@
 #include <base/utility/utility.h>
 
 #include <atomic>
-//#include <string>
+#include <cstring>
 #include <cassert>
-//#include <cinttypes>
-//#include <stdexcept>
 #include <algorithm>
 
 #ifdef USE_HALCYON_STRING_VIEW
@@ -509,7 +507,7 @@ private:  // 数据结构
                 offset + (osize + 1) * sizeof(CharT),
                 offset + (ocapacity + 1) * sizeof(CharT),
                 alloc_size));
-            assert(ref->count_.load(std::memory_order_acquire) == 1);
+            assert(result->count_.load(std::memory_order_acquire) == 1);
             return result;
         }
     };
@@ -561,7 +559,7 @@ private:
          * @param[in]   字符串容量
          * @param[in]   字符串类型
          */
-        constexpr void setCapacity(size_t cap, Type type)
+        void setCapacity(size_t cap, Type type)
         {
             capacity_ = cap | (static_cast<size_t>(type) << kTypeShift);
         }

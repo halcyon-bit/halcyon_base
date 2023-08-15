@@ -9,7 +9,7 @@
 #include "gtest/gtest.h"
 
 #include <string>
-#include <forward_list>
+#include <unordered_map>
 
 using namespace halcyon;
 
@@ -1019,20 +1019,14 @@ TEST(StringTest, erase)
         base::string str("12345678901234567890");
         std::string res("12345678901234567890");
 
-        str.erase(str.end());
-        res.erase(res.end());
+        str.erase(str.begin());
+        res.erase(res.begin());
         EXPECT_EQ(str.size(), res.size());
         EXPECT_EQ(res.compare(str.data()), 0);
 
         str.erase(str.begin() + 10);
         res.erase(res.begin() + 10);
         EXPECT_EQ(str.size(), res.size());
-        EXPECT_EQ(res.compare(str.data()), 0);
-
-        str.erase(str.begin());
-        res.erase(res.begin());
-        EXPECT_EQ(str.size(), res.size());
-        EXPECT_EQ(str.empty(), res.empty());
         EXPECT_EQ(res.compare(str.data()), 0);
     }
 
@@ -1470,224 +1464,134 @@ TEST(StringTest, compare)
 {
     {
         base::string str("456789");
-        std::string res("456789");
 
-        base::string tmp1;
-        std::string tmp2;
-        EXPECT_EQ(str.compare(tmp1), res.compare(tmp2));
+        base::string tmp;
+        EXPECT_GE(str.compare(tmp), 0);
 
-        tmp1 = "1"; tmp2 = "1";
-        EXPECT_EQ(str.compare(tmp1), res.compare(tmp2));
-        tmp1 = "123456"; tmp2 = "123456";
-        EXPECT_EQ(str.compare(tmp1), res.compare(tmp2));
-        tmp1 = "12345678"; tmp2 = "12345678";
-        EXPECT_EQ(str.compare(tmp1), res.compare(tmp2));
+        tmp = "1";
+        EXPECT_GT(str.compare(tmp), 0);
+        tmp = "123456";
+        EXPECT_GT(str.compare(tmp), 0);
+        tmp = "12345678";
+        EXPECT_GT(str.compare(tmp), 0);
 
-        tmp1 = "987"; tmp2 = "987";
-        EXPECT_EQ(str.compare(tmp1), res.compare(tmp2));
-        tmp1 = "987654"; tmp2 = "987654";
-        EXPECT_EQ(str.compare(tmp1), res.compare(tmp2));
-        tmp1 = "98765432"; tmp2 = "98765432";
-        EXPECT_EQ(str.compare(tmp1), res.compare(tmp2));
+        tmp = "987";
+        EXPECT_LT(str.compare(tmp), 0);
+        tmp = "987654";
+        EXPECT_LT(str.compare(tmp), 0);
+        tmp = "98765432";
+        EXPECT_LT(str.compare(tmp), 0);
 
-        tmp1 = "456789"; tmp2 = "456789";
-        EXPECT_EQ(str.compare(tmp1), res.compare(tmp2));
+        tmp = "456789";
+        EXPECT_EQ(str.compare(tmp), 0);
     }
 
     {
         base::string str("456789");
         std::string res("456789");
 
-        base::string tmp1;
-        std::string tmp2;
-        EXPECT_EQ(str.compare(0, 0, tmp1), res.compare(0, 0, tmp2));
-        EXPECT_EQ(str.compare(1, 5, tmp1), res.compare(1, 5, tmp2));
-        EXPECT_EQ(str.compare(0, str.size(), tmp1), res.compare(0, str.size(), tmp2));
-        EXPECT_EQ(str.compare(str.size(), str.size(), tmp1), res.compare(str.size(), str.size(), tmp2));
+        base::string tmp;
+        EXPECT_EQ(str.compare(0, 0, tmp), 0);
+        EXPECT_GT(str.compare(1, 5, tmp), 0);
+        EXPECT_GT(str.compare(0, str.size(), tmp), 0);
+        EXPECT_EQ(str.compare(str.size(), str.size(), tmp), 0);
 
-        tmp1 = "1"; tmp2 = "1";
-        EXPECT_EQ(str.compare(0, 0, tmp1), res.compare(0, 0, tmp2));
-        EXPECT_EQ(str.compare(1, 5, tmp1), res.compare(1, 5, tmp2));
-        EXPECT_EQ(str.compare(0, str.size(), tmp1), res.compare(0, str.size(), tmp2));
-        EXPECT_EQ(str.compare(str.size(), str.size(), tmp1), res.compare(str.size(), str.size(), tmp2));
+        tmp = "1";
+        EXPECT_LT(str.compare(0, 0, tmp), 0);
+        EXPECT_GT(str.compare(1, 5, tmp), 0);
+        EXPECT_GT(str.compare(0, str.size(), tmp), 0);
+        EXPECT_LT(str.compare(str.size(), str.size(), tmp), 0);
 
-        tmp1 = "123456"; tmp2 = "123456";
-        EXPECT_EQ(str.compare(0, 0, tmp1), res.compare(0, 0, tmp2));
-        EXPECT_EQ(str.compare(1, 5, tmp1), res.compare(1, 5, tmp2));
-        EXPECT_EQ(str.compare(0, str.size(), tmp1), res.compare(0, str.size(), tmp2));
-        EXPECT_EQ(str.compare(str.size(), str.size(), tmp1), res.compare(str.size(), str.size(), tmp2));
+        tmp = "123456";
+        EXPECT_LT(str.compare(0, 0, tmp), 0);
+        EXPECT_GT(str.compare(1, 5, tmp), 0);
+        EXPECT_GT(str.compare(0, str.size(), tmp), 0);
+        EXPECT_LT(str.compare(str.size(), str.size(), tmp), 0);
 
-        tmp1 = "12345678"; tmp2 = "12345678";
-        EXPECT_EQ(str.compare(0, 0, tmp1), res.compare(0, 0, tmp2));
-        EXPECT_EQ(str.compare(1, 5, tmp1), res.compare(1, 5, tmp2));
-        EXPECT_EQ(str.compare(0, str.size(), tmp1), res.compare(0, str.size(), tmp2));
-        EXPECT_EQ(str.compare(str.size(), str.size(), tmp1), res.compare(str.size(), str.size(), tmp2));
+        tmp = "12345678";
+        EXPECT_LT(str.compare(0, 0, tmp), 0);
+        EXPECT_GT(str.compare(1, 5, tmp), 0);
+        EXPECT_GT(str.compare(0, str.size(), tmp), 0);
+        EXPECT_LT(str.compare(str.size(), str.size(), tmp), 0);
 
-        tmp1 = "987"; tmp2 = "987";
-        EXPECT_EQ(str.compare(0, 0, tmp1), res.compare(0, 0, tmp2));
-        EXPECT_EQ(str.compare(1, 5, tmp1), res.compare(1, 5, tmp2));
-        EXPECT_EQ(str.compare(0, str.size(), tmp1), res.compare(0, str.size(), tmp2));
-        EXPECT_EQ(str.compare(str.size(), str.size(), tmp1), res.compare(str.size(), str.size(), tmp2));
+        tmp = "987";
+        EXPECT_LT(str.compare(0, 0, tmp), 0);
+        EXPECT_LT(str.compare(1, 5, tmp), 0);
+        EXPECT_LT(str.compare(0, str.size(), tmp), 0);
+        EXPECT_LT(str.compare(str.size(), str.size(), tmp), 0);
 
-        tmp1 = "987654"; tmp2 = "987654";
-        EXPECT_EQ(str.compare(0, 0, tmp1), res.compare(0, 0, tmp2));
-        EXPECT_EQ(str.compare(1, 5, tmp1), res.compare(1, 5, tmp2));
-        EXPECT_EQ(str.compare(0, str.size(), tmp1), res.compare(0, str.size(), tmp2));
-        EXPECT_EQ(str.compare(str.size(), str.size(), tmp1), res.compare(str.size(), str.size(), tmp2));
+        tmp = "987654";
+        EXPECT_LT(str.compare(0, 0, tmp), 0);
+        EXPECT_LT(str.compare(1, 5, tmp), 0);
+        EXPECT_LT(str.compare(0, str.size(), tmp), 0);
+        EXPECT_LT(str.compare(str.size(), str.size(), tmp), 0);
 
-        tmp1 = "98765432"; tmp2 = "98765432";
-        EXPECT_EQ(str.compare(0, 0, tmp1), res.compare(0, 0, tmp2));
-        EXPECT_EQ(str.compare(1, 5, tmp1), res.compare(1, 5, tmp2));
-        EXPECT_EQ(str.compare(0, str.size(), tmp1), res.compare(0, str.size(), tmp2));
-        EXPECT_EQ(str.compare(str.size(), str.size(), tmp1), res.compare(str.size(), str.size(), tmp2));
+        tmp = "98765432";
+        EXPECT_LT(str.compare(0, 0, tmp), 0);
+        EXPECT_LT(str.compare(1, 5, tmp), 0);
+        EXPECT_LT(str.compare(0, str.size(), tmp), 0);
+        EXPECT_LT(str.compare(str.size(), str.size(), tmp), 0);
 
-        tmp1 = "456789"; tmp2 = "456789";
-        EXPECT_EQ(str.compare(0, 0, tmp1), res.compare(0, 0, tmp2));
-        EXPECT_EQ(str.compare(1, 5, tmp1), res.compare(1, 5, tmp2));
-        EXPECT_EQ(str.compare(0, str.size(), tmp1), res.compare(0, str.size(), tmp2));
-        EXPECT_EQ(str.compare(str.size(), str.size(), tmp1), res.compare(str.size(), str.size(), tmp2));
+        tmp = "456789";
+        EXPECT_LT(str.compare(0, 0, tmp), 0);
+        EXPECT_GT(str.compare(1, 5, tmp), 0);
+        EXPECT_EQ(str.compare(0, str.size(), tmp), 0);
+        EXPECT_LT(str.compare(str.size(), str.size(), tmp), 0);
     }
 
     {
         base::string str("456789");
         std::string res("456789");
 
-        base::string tmp1("12345678909876543210");
-        std::string tmp2("12345678909876543210");
-        int ret1 = str.compare(0, str.size(), tmp1, 0);
-        int ret2 = res.compare(0, res.size(), tmp2, 0);
-        EXPECT_EQ(ret1, ret2);
-
-        ret1 = str.compare(0, str.size(), tmp1, 5);
-        ret2 = res.compare(0, res.size(), tmp2, 5);
-        EXPECT_EQ(ret1, ret2);
-
-        ret1 = str.compare(0, str.size(), tmp1, tmp1.size());
-        ret2 = res.compare(0, res.size(), tmp2, tmp2.size());
-        EXPECT_EQ(ret1, ret2);
-
-        ret1 = str.compare(0, str.size(), tmp1, 0, str.size());
-        ret2 = res.compare(0, res.size(), tmp2, 0, res.size());
-        EXPECT_EQ(ret1, ret2);
-
-        ret1 = str.compare(0, str.size(), tmp1, 3, str.size());
-        ret2 = res.compare(0, res.size(), tmp2, 3, res.size());
-        EXPECT_EQ(ret1, ret2);
-
-        ret1 = str.compare(0, str.size(), tmp1, 10, str.size());
-        ret2 = res.compare(0, res.size(), tmp2, 10, res.size());
-        EXPECT_EQ(ret1, ret2);
-
-        ret1 = str.compare(0, str.size(), tmp1, 0, str.size() - 2);
-        ret2 = res.compare(0, res.size(), tmp2, 0, res.size() - 2);
-        EXPECT_EQ(ret1, ret2);
-
-        ret1 = str.compare(0, str.size(), tmp1, 3, str.size() - 2);
-        ret2 = res.compare(0, res.size(), tmp2, 3, res.size() - 2);
-        EXPECT_EQ(ret1, ret2);
-
-        ret1 = str.compare(0, str.size(), tmp1, 10, str.size() - 2);
-        ret2 = res.compare(0, res.size(), tmp2, 10, res.size() - 2);
-        EXPECT_EQ(ret1, ret2);
-
-        ret1 = str.compare(0, str.size(), tmp1, 0, str.size() + 2);
-        ret2 = res.compare(0, res.size(), tmp2, 0, res.size() + 2);
-        EXPECT_EQ(ret1, ret2);
-
-        ret1 = str.compare(1, 3, tmp1, 4, 3);
-        ret2 = res.compare(1, 3, tmp2, 4, 3);
-        EXPECT_EQ(ret1, ret2);
-
-        ret1 = str.compare(res.size(), 3, tmp1, 4, 3);
-        ret2 = res.compare(res.size(), 3, tmp2, 4, 3);
-        EXPECT_EQ(ret1, ret2);
+        base::string tmp("12345678909876543210");
+        EXPECT_GT(str.compare(0, str.size(), tmp, 0), 0);
+        EXPECT_LT(str.compare(0, str.size(), tmp, 5), 0);
+        EXPECT_GT(str.compare(0, str.size(), tmp, tmp.size()), 0);
+        EXPECT_GT(str.compare(0, str.size(), tmp, 0, str.size()), 0);
+        EXPECT_EQ(str.compare(0, str.size(), tmp, 3, str.size()), 0);
+        EXPECT_LT(str.compare(0, str.size(), tmp, 10, str.size()), 0);
+        EXPECT_GT(str.compare(0, str.size(), tmp, 0, str.size() - 2), 0);
+        EXPECT_GT(str.compare(0, str.size(), tmp, 3, str.size() - 2), 0);
+        EXPECT_LT(str.compare(0, str.size(), tmp, 10, str.size() - 2), 0);
+        EXPECT_GT(str.compare(0, str.size(), tmp, 0, str.size() + 2), 0);
+        EXPECT_EQ(str.compare(1, 3, tmp, 4, 3), 0);
+        EXPECT_LT(str.compare(res.size(), 3, tmp, 4, 3), 0);
     }
 
     {
         base::string str("456789");
         std::string res("456789");
 
-        int ret1 = str.compare(0, str.size(), "456789");
-        int ret2 = res.compare(0, res.size(), "456789");
-        EXPECT_EQ(ret1, ret2);
-
-        ret1 = str.compare(0, str.size(), "1");
-        ret2 = res.compare(0, res.size(), "1");
-        EXPECT_EQ(ret1, ret2);
-        
-        ret1 = str.compare(0, str.size(), "9");
-        ret2 = res.compare(0, res.size(), "9");
-        EXPECT_EQ(ret1, ret2);
-
-        ret1 = str.compare(0, str.size(), "4567890");
-        ret2 = res.compare(0, res.size(), "4567890");
-        EXPECT_EQ(ret1, ret2);
-
-        ret1 = str.compare(0, str.size(), "9876543");
-        ret2 = res.compare(0, res.size(), "9876543");
-        EXPECT_EQ(ret1, ret2);
-
-        ret1 = str.compare(1, 2, "56");
-        ret2 = res.compare(1, 2, "56");
-        EXPECT_EQ(ret1, ret2);
+        EXPECT_EQ(str.compare(0, str.size(), "456789"), 0);
+        EXPECT_GT(str.compare(0, str.size(), "1"), 0);
+        EXPECT_LT(str.compare(0, str.size(), "9"), 0);
+        EXPECT_LT(str.compare(0, str.size(), "4567890"), 0);
+        EXPECT_LT(str.compare(0, str.size(), "9876543"), 0);
+        EXPECT_EQ(str.compare(1, 2, "56"), 0);
     }
 
     {
         base::string str("456789");
         std::string res("456789");
 
-        int ret1 = str.compare(0, str.size(), "456789", strlen("456789"));
-        int ret2 = res.compare(0, res.size(), "456789", strlen("456789"));
-        EXPECT_EQ(ret1, ret2);
-
-        ret1 = str.compare(0, str.size(), "1", 1);
-        ret2 = res.compare(0, res.size(), "1", 1);
-        EXPECT_EQ(ret1, ret2);
-
-        ret1 = str.compare(0, str.size(), "9", 1);
-        ret2 = res.compare(0, res.size(), "9", 1);
-        EXPECT_EQ(ret1, ret2);
-
-        ret1 = str.compare(0, str.size(), "4567890", 7);
-        ret2 = res.compare(0, res.size(), "4567890", 7);
-        EXPECT_EQ(ret1, ret2);
-
-        ret1 = str.compare(0, str.size(), "9876543", 7);
-        ret2 = res.compare(0, res.size(), "9876543", 7);
-        EXPECT_EQ(ret1, ret2);
-
-        ret1 = str.compare(0, 4, "4567890123", 4);
-        ret2 = res.compare(0, 4, "4567890123", 4);
-        EXPECT_EQ(ret1, ret2);
-
-        ret1 = str.compare(2, 4, "6789", 4);
-        ret2 = res.compare(2, 4, "6789", 4);
-        EXPECT_EQ(ret1, ret2);
+        EXPECT_EQ(str.compare(0, str.size(), "456789", strlen("456789")), 0);
+        EXPECT_GT(str.compare(0, str.size(), "1", 1), 0);
+        EXPECT_LT(str.compare(0, str.size(), "9", 1), 0);
+        EXPECT_LT(str.compare(0, str.size(), "4567890", 7), 0);
+        EXPECT_LT(str.compare(0, str.size(), "9876543", 7), 0);
+        EXPECT_EQ(str.compare(0, 4, "4567890123", 4), 0);
+        EXPECT_EQ(str.compare(2, 4, "6789", 4), 0);
     }
 
     {
         base::string str("456789");
         std::string res("456789");
 
-        int ret1 = str.compare("456789");
-        int ret2 = res.compare("456789");
-        EXPECT_EQ(ret1, ret2);
-
-        ret1 = str.compare("1");
-        ret2 = res.compare("1");
-        EXPECT_EQ(ret1, ret2);
-
-        ret1 = str.compare("9");
-        ret2 = res.compare("9");
-        EXPECT_EQ(ret1, ret2);
-
-        ret1 = str.compare("4567890");
-        ret2 = res.compare("4567890");
-        EXPECT_EQ(ret1, ret2);
-
-        ret1 = str.compare("9876543");
-        ret2 = res.compare("9876543");
-        EXPECT_EQ(ret1, ret2);
+        EXPECT_EQ(str.compare("456789"), 0);
+        EXPECT_GT(str.compare("1"), 0);
+        EXPECT_LT(str.compare("9"), 0);
+        EXPECT_LT(str.compare("4567890"), 0);
+        EXPECT_LT(str.compare("9876543"), 0);
     }
 }
 

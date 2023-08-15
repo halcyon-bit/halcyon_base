@@ -51,6 +51,9 @@ namespace std
 {
     template <typename... T>
     using void_t = void;
+
+    template<bool B>
+    using bool_constant = integral_constant<bool, B>;
 }
 #endif
 
