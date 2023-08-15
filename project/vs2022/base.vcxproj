@@ -21,11 +21,13 @@
     <ClInclude Include="..\..\include\base\md5\md5.h" />
     <ClInclude Include="..\..\include\base\message\message_bus.h" />
     <ClInclude Include="..\..\include\base\optional\optional.h" />
+    <ClInclude Include="..\..\include\base\queue\blocking_queue.h" />
+    <ClInclude Include="..\..\include\base\queue\spsc_queue.h" />
     <ClInclude Include="..\..\include\base\range\range.h" />
     <ClInclude Include="..\..\include\base\singleton\singleton.h" />
+    <ClInclude Include="..\..\include\base\string\string.h" />
     <ClInclude Include="..\..\include\base\string\string_view.h" />
     <ClInclude Include="..\..\include\base\task\task.h" />
-    <ClInclude Include="..\..\include\base\thread\blocking_queue.h" />
     <ClInclude Include="..\..\include\base\thread\count_down_latch.h" />
     <ClInclude Include="..\..\include\base\thread\thread_pool.h" />
     <ClInclude Include="..\..\include\base\thread\thread.h" />
@@ -98,8 +100,8 @@
       <PreprocessorDefinitions>_DEBUG;_LIB;WIN64;HALCYON_BASE_DLL_BUILD;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>..\..\include;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <AdditionalIncludeDirectories>..\..\include;..\..\src;..\..\thirdparty\sqlite3\3.36.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <ProgramDataBaseFileName>..\..\lib\win64_$(PlatformToolset)_$(Configuration)\$(ProjectName)d.pdb</ProgramDataBaseFileName>
       <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
     </ClCompile>
@@ -122,7 +124,7 @@
       <PreprocessorDefinitions>NDEBUG;_LIB;WIN64;HALCYON_BASE_DLL_BUILD;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>..\..\include;..\..\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\include;..\..\src;..\..\thirdparty\sqlite3\3.36.0\include</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ProgramDataBaseFileName>..\..\lib\win64_$(PlatformToolset)_$(Configuration)\$(ProjectName).pdb</ProgramDataBaseFileName>
     </ClCompile>

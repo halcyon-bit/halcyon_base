@@ -49,6 +49,12 @@
     <Filter Include="message">
       <UniqueIdentifier>{010ea1e5-ae1c-4f45-8f64-2b94c221484e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="sqlite">
+      <UniqueIdentifier>{680bd84f-d182-404c-adb9-78b215361f47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="queue">
+      <UniqueIdentifier>{077e50f3-b317-44d1-8346-03bc183b534b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\base\base64\base64.h">
@@ -90,9 +96,6 @@
     <ClInclude Include="..\..\include\base\singleton\singleton.h">
       <Filter>singleton</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\base\thread\blocking_queue.h">
-      <Filter>thread</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\base\string\string_view.h">
       <Filter>string</Filter>
     </ClInclude>
@@ -131,6 +134,15 @@
     </ClInclude>
     <ClInclude Include="..\..\include\base\utility\bind.h">
       <Filter>utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\base\string\string.h">
+      <Filter>string</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\base\queue\blocking_queue.h">
+      <Filter>queue</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\base\queue\spsc_queue.h">
+      <Filter>queue</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
