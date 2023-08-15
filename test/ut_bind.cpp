@@ -1,4 +1,4 @@
-#define USE_HALCYON_INVOKE_APPLY
+﻿#define USE_HALCYON_INVOKE_APPLY
 #include "base/utility/bind.h"
 
 #include "gtest/gtest.h"
@@ -46,7 +46,7 @@ public:
     }
 };
 
-TEST(Bind, test)
+TEST(BindTest, test)
 {
     {
         auto func1 = base::bind(&test1);

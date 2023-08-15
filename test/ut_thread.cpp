@@ -178,7 +178,7 @@ TEST(ThreadTest, push)
     thd.join();
 }
 
-TEST(ThreadTest, memfunc)
+TEST(ThreadTest, member_func)
 {
     base::Thread thd;
     thd.join();

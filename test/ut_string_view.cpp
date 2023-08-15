@@ -109,7 +109,7 @@ TEST(StringViewTest, conversion)
     EXPECT_EQ(str3, str1);
 }
 
-TEST(StringViewTest, operation1)
+TEST(StringViewTest, operator_1)
 {
     char v[16]{ 0 };
     std::string str1("123456");
@@ -181,7 +181,7 @@ TEST(StringViewTest, compare)
     EXPECT_GT(sv1.compare(3, 3, sv2.data(), 3), 0);
 }
 
-TEST(StringViewTest, operation2)
+TEST(StringViewTest, operator_2)
 {
     string_view sv1("123456");
     string_view sv2("789");
@@ -509,7 +509,7 @@ TEST(StringViewTest, find_last_not_of)
     EXPECT_EQ(sv1.find_last_not_of("23", 2, 1), str1.find_last_not_of("23", 2, 1));
 }
 
-TEST(StringViewTest, operation3)
+TEST(StringViewTest, operator_3)
 {
     string_view sv1{ "123456" };
     string_view sv2{ "123" };
@@ -736,7 +736,7 @@ TEST(StringViewTest, operation3)
     EXPECT_EQ(ch3 >= sv4, true);
 }
 
-TEST(StringViewTest, operation4)
+TEST(StringViewTest, operator_4)
 {
     std::unordered_map<string_view, int> test;
 

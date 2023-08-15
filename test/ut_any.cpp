@@ -110,7 +110,7 @@ TEST(AnyTest, assignment)
     EXPECT_EQ(m, res);
 }
 
-TEST(AnyTest, memberFunc)
+TEST(AnyTest, member_func)
 {
     // void
     base::Any any1;

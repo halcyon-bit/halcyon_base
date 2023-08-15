@@ -169,7 +169,7 @@ void consumerThing_2(base::SPSCQueue<size_t>& queue)
     }
 }
 
-TEST(SPSCQueue, normal)
+TEST(SPSCQueueTest, normal)
 {
     {
         base::SPSCQueue<size_t, 100> queue;
@@ -226,7 +226,7 @@ TEST(SPSCQueue, normal)
     }
 }
 
-TEST(SPSCQueue, obj_with_move)
+TEST(SPSCQueueTest, obj_with_move)
 {
     {
         base::SPSCQueue<TestMove, 100> queue;
@@ -301,7 +301,7 @@ TEST(SPSCQueue, obj_with_move)
     }
 }
 
-TEST(SPSCQueue, obj_no_move)
+TEST(SPSCQueueTest, obj_no_move)
 {
     {
         base::SPSCQueue<TestNoMove, 100> queue;
@@ -382,7 +382,7 @@ TEST(SPSCQueue, obj_no_move)
     }
 }
 
-TEST(SPSCQueue, thread_test_1)
+TEST(SPSCQueueTest, thread_test_1)
 {
     {
         base::SPSCQueue<size_t, 1024> queue;
@@ -398,7 +398,7 @@ TEST(SPSCQueue, thread_test_1)
     }
 }
 
-TEST(SPSCQueue, thread_test_2)
+TEST(SPSCQueueTest, thread_test_2)
 {
     {
         base::SPSCQueue<size_t> queue(1024);

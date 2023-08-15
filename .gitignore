@@ -33,6 +33,7 @@
 
 # vs
 .vs
+*.user
 tmp
 win64_*
 

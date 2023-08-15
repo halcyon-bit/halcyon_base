@@ -254,7 +254,7 @@ TEST(OptionalTest, constructor)
     }
 }
 
-TEST(OptionalTest, operator_)
+TEST(OptionalTest, operator_1)
 {
     {
         base::Optional<int> op1(1);

@@ -1,4 +1,4 @@
-#define _BASE_TEST_
+﻿#define _BASE_TEST_
 #define USE_HALCYON_INVOKE_APPLY
 #define USE_HALCYON_INDEX_SEQUENCE
 #include "base/utility/utility.h"
@@ -91,14 +91,14 @@ public:
     }
 };
 
-TEST(UtilityTest, type_name_)
+TEST(UtilityTest, type_name)
 {
     std::cout << base::typeName<double>() << std::endl;
     std::cout << base::typeName<std::string>() << std::endl;
     std::cout << base::typeName<std::map<int, int>>() << std::endl;
 }
 
-TEST(UtilityTest, invoke_)
+TEST(UtilityTest, invoke)
 {
     int n1{ 1 };
     double db{ 1.1 };
@@ -146,7 +146,7 @@ TEST(UtilityTest, invoke_)
     EXPECT_EQ(ret2, "hello world");
 }
 
-TEST(UtilityTest, find_tuple_index_)
+TEST(UtilityTest, find_tuple_index)
 {
     using Tuple = std::tuple<int, double, std::string, int, int>;
     Tuple tp = std::make_tuple(1, 2.0, "test", 3, 2);
@@ -166,7 +166,7 @@ TEST(UtilityTest, find_tuple_index_)
     EXPECT_EQ(pos, -1);
 }
 
-TEST(UtilityTest, tuple_for_each_)
+TEST(UtilityTest, tuple_for_each)
 {
     using Tuple = std::tuple<int, double, std::string, int, int>;
     const Tuple tp1 = std::make_tuple(1, 2.2, "hello", 3, 2);
@@ -189,7 +189,7 @@ TEST(UtilityTest, tuple_for_each_)
     base::tuple_for_each(TupleElem(), std::make_tuple());
 }
 
-TEST(UtilityTest, reverse_tuple_)
+TEST(UtilityTest, reverse_tuple)
 {
     using Tuple = std::tuple<int, double, std::string, int, int>;
     const Tuple tp1 = std::make_tuple(1, 2.2, "hello", 3, 2);
@@ -222,7 +222,7 @@ TEST(UtilityTest, reverse_tuple_)
     base::tuple_for_each(TupleElem(), rtp4);
 }
 
-TEST(UtilityTest, apply_)
+TEST(UtilityTest, apply)
 {
     const auto tp1 = std::make_tuple(1, 2.2, "hello", 3);
     auto tp2 = std::make_tuple(10, 20.22, std::string("tuple"), 30);
@@ -260,7 +260,7 @@ TEST(UtilityTest, apply_)
     EXPECT_EQ(ret2, "hello world");
 }
 
-TEST(UtilityTest, zip_)
+TEST(UtilityTest, zip)
 {
     {
         std::tuple<int, double> t1{ 1, 6.6 }, t2{ 2, 7.7 };

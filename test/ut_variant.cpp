@@ -1,4 +1,4 @@
-#include "base/variant/variant.h"
+﻿#include "base/variant/variant.h"
 
 #include "gtest/gtest.h"
 
@@ -155,7 +155,7 @@ TEST(VariantTest, constructor)
     }
 }
 
-TEST(VariantTest, operator_)
+TEST(VariantTest, operator_1)
 {
     {
         base::Variant<int, std::string> var1;
