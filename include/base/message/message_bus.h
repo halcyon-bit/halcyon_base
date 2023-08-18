@@ -64,7 +64,7 @@ public:  /// 通知相关接口(异步)，注意：通知一般是一对多的
      * @ps          调用者确保 gen_func != nullptr
      */
     template<typename R, typename... Args>
-    void attachNotify(const MessageKey& msg_key, R(*gen_func)(Args...), ThreadSPtr thd = nullptr)
+    void attachNotify(const MessageKey& key, R(*gen_func)(Args...), ThreadSPtr thd = nullptr)
     {
         using notify_func_t = std::function<void(Args...)>;
         assert(gen_func != nullptr);
@@ -77,7 +77,7 @@ public:  /// 通知相关接口(异步)，注意：通知一般是一对多的
         NotifyValue value;
         value.func = func; value.identity = id;
         value.thd = (thd == nullptr ? thd_ : thd);
-        addNotify(msg_key, std::move(value));
+        addNotify(key, std::move(value));
     }
 
     /**
@@ -89,7 +89,7 @@ public:  /// 通知相关接口(异步)，注意：通知一般是一对多的
      * @ps          调用者确保 mem_func != nullptr && obj != nullptr
      */
     template<typename C, typename R, typename... Args>
-    void attachNotify(const MessageKey& msg_key, C* obj, R(C::*mem_func)(Args...), ThreadSPtr thd = nullptr)
+    void attachNotify(const MessageKey& key, C* obj, R(C::*mem_func)(Args...), ThreadSPtr thd = nullptr)
     {
         using notify_func_t = std::function<void(Args...)>;
         assert(mem_func != nullptr && obj != nullptr);
@@ -103,10 +103,10 @@ public:  /// 通知相关接口(异步)，注意：通知一般是一对多的
         NotifyValue value;
         value.func = func; value.identity = _atoi64(buf);
         value.thd = (thd == nullptr ? thd_ : thd);
-        addNotify(msg_key, std::move(value));
+        addNotify(key, std::move(value));
     }
     template<typename C, typename R, typename... Args>
-    void attachNotify(const MessageKey& msg_key, C* obj, R(C::*mem_func)(Args...) const, ThreadSPtr thd = nullptr)
+    void attachNotify(const MessageKey& key, C* obj, R(C::*mem_func)(Args...) const, ThreadSPtr thd = nullptr)
     {
         using notify_func_t = std::function<void(Args...)>;
         assert(mem_func != nullptr && obj != nullptr);
@@ -120,10 +120,10 @@ public:  /// 通知相关接口(异步)，注意：通知一般是一对多的
         NotifyValue value;
         value.func = func; value.identity = _atoi64(buf);
         value.thd = (thd == nullptr ? thd_ : thd);
-        addNotify(msg_key, std::move(value));
+        addNotify(key, std::move(value));
     }
     template<typename C, typename R, typename... Args>
-    void attachNotify(const MessageKey& msg_key, C* obj, R(C::*mem_func)(Args...) volatile, ThreadSPtr thd = nullptr)
+    void attachNotify(const MessageKey& key, C* obj, R(C::*mem_func)(Args...) volatile, ThreadSPtr thd = nullptr)
     {
         using notify_func_t = std::function<void(Args...)>;
         assert(mem_func != nullptr && obj != nullptr);
@@ -137,10 +137,10 @@ public:  /// 通知相关接口(异步)，注意：通知一般是一对多的
         NotifyValue value;
         value.func = func; value.identity = _atoi64(buf);
         value.thd = (thd == nullptr ? thd_ : thd);
-        addNotify(msg_key, std::move(value));
+        addNotify(key, std::move(value));
     }
     template<typename C, typename R, typename... Args>
-    void attachNotify(const MessageKey& msg_key, C* obj, R(C::*mem_func)(Args...) const volatile, ThreadSPtr thd = nullptr)
+    void attachNotify(const MessageKey& key, C* obj, R(C::*mem_func)(Args...) const volatile, ThreadSPtr thd = nullptr)
     {
         using notify_func_t = std::function<void(Args...)>;
         assert(mem_func != nullptr && obj != nullptr);
@@ -154,7 +154,7 @@ public:  /// 通知相关接口(异步)，注意：通知一般是一对多的
         NotifyValue value;
         value.func = func; value.identity = _atoi64(buf);
         value.thd = (thd == nullptr ? thd_ : thd);
-        addNotify(msg_key, std::move(value));
+        addNotify(key, std::move(value));
     }
 
     /**
@@ -164,10 +164,10 @@ public:  /// 通知相关接口(异步)，注意：通知一般是一对多的
      * @ps          调用者确保 gen_func != nullptr
      */
     template<typename R, typename... Args>
-    void detachNotify(const MessageKey& msg_key, R(*gen_func)(Args...))
+    void detachNotify(const MessageKey& key, R(*gen_func)(Args...))
     {
         uintptr_t identity = reinterpret_cast<uintptr_t>(gen_func);
-        delNotify(msg_key, identity);
+        delNotify(key, identity);
     }
 
     /**
@@ -178,46 +178,46 @@ public:  /// 通知相关接口(异步)，注意：通知一般是一对多的
      * @ps          调用者确保 mem_func != nullptr && obj != nullptr
      */
     template<typename C, typename R, typename... Args>
-    void detachNotify(const MessageKey& msg_key, C* obj, R(C::*mem_func)(Args...))
+    void detachNotify(const MessageKey& key, C* obj, R(C::*mem_func)(Args...))
     {
         char buf[64]{ 0 };
         snprintf(buf, sizeof(buf), "%llu", mem_func);
         uintptr_t identity = _atoi64(buf);
-        delNotify(msg_key, identity);
+        delNotify(key, identity);
     }
     template<typename C, typename R, typename... Args>
-    void detachNotify(const MessageKey& msg_key, C* obj, R(C::*mem_func)(Args...) const)
+    void detachNotify(const MessageKey& key, C* obj, R(C::*mem_func)(Args...) const)
     {
         char buf[64]{ 0 };
         snprintf(buf, sizeof(buf), "%llu", mem_func);
         uintptr_t identity = _atoi64(buf);
-        delNotify(msg_key, identity);
+        delNotify(key, identity);
     }
     template<typename C, typename R, typename... Args>
-    void detachNotify(const MessageKey& msg_key, C* obj, R(C::*mem_func)(Args...) volatile)
+    void detachNotify(const MessageKey& key, C* obj, R(C::*mem_func)(Args...) volatile)
     {
         char buf[64]{ 0 };
         snprintf(buf, sizeof(buf), "%llu", mem_func);
         uintptr_t identity = _atoi64(buf);
-        delNotify(msg_key, identity);
+        delNotify(key, identity);
     }
     template<typename C, typename R, typename... Args>
-    void detachNotify(const MessageKey& msg_key, C* obj, R(C::*mem_func)(Args...) const volatile)
+    void detachNotify(const MessageKey& key, C* obj, R(C::*mem_func)(Args...) const volatile)
     {
         char buf[64]{ 0 };
         snprintf(buf, sizeof(buf), "%llu", mem_func);
         uintptr_t identity = _atoi64(buf);
-        delNotify(msg_key, identity);
+        delNotify(key, identity);
     }
 
     /**
      * @brief       反注册某个通知（清除该通知下的所有函数）
      * @param[in]   通知key
      */
-    void detachNotify(const MessageKey& msg_key)
+    void detachNotify(const MessageKey& key)
     {
         std::lock_guard<std::mutex> lock(notify_mutex_);
-        auto range = notify_.equal_range(msg_key);
+        auto range = notify_.equal_range(key);
         notify_.erase(range.first, range.second);
     }
 
@@ -227,11 +227,11 @@ public:  /// 通知相关接口(异步)，注意：通知一般是一对多的
      * @param[in]   消息所需参数
      */
     template<typename... Args>
-    void notify(const MessageKey& msg_key, Args... args)
+    void notify(const MessageKey& key, Args... args)
     {
         using notify_func_t = std::function<void(Args...)>;
         std::lock_guard<std::mutex> lock(notify_mutex_);
-        auto range = notify_.equal_range(msg_key);
+        auto range = notify_.equal_range(key);
         for (auto iter = range.first; iter != range.second; ++iter) {
             NotifyValue& value = iter->second;
             auto thd = value.thd.lock();
@@ -268,7 +268,7 @@ public:  /// 事务相关调用(同步)，注意：事务是一对一的
      * @ps          调用者确保 gen_func != nullptr
      */
     template<typename R, typename... Args>
-    void attach(const MessageKey& msg_key, R(*gen_func)(Args...))
+    void attach(const MessageKey& key, R(*gen_func)(Args...))
     {
         using affair_func_t = std::function<R(Args...)>;
         assert(gen_func != nullptr);
@@ -277,7 +277,7 @@ public:  /// 事务相关调用(同步)，注意：事务是一对一的
         });
         {
             std::lock_guard<std::mutex> lock(affair_mutex_);
-            affair_[msg_key] = func;
+            affair_[key] = func;
         }
     }
 
@@ -289,7 +289,7 @@ public:  /// 事务相关调用(同步)，注意：事务是一对一的
      * @ps          调用者确保 mem_func != nullptr && obj != nullptr
      */
     template<typename C, typename R, typename... Args>
-    void attach(const MessageKey& msg_key, C* obj, R(C::*mem_func)(Args...))
+    void attach(const MessageKey& key, C* obj, R(C::*mem_func)(Args...))
     {
         using affair_func_t = std::function<R(Args...)>;
         assert(mem_func != nullptr && obj != nullptr);
@@ -298,11 +298,11 @@ public:  /// 事务相关调用(同步)，注意：事务是一对一的
         });
         {
             std::lock_guard<std::mutex> lock(affair_mutex_);
-            affair_[msg_key] = func;
+            affair_[key] = func;
         }
     }
     template<typename C, typename R, typename... Args>
-    void attach(const MessageKey& msg_key, C* obj, R(C::*mem_func)(Args...) const)
+    void attach(const MessageKey& key, C* obj, R(C::*mem_func)(Args...) const)
     {
         using affair_func_t = std::function<R(Args...)>;
         assert(mem_func != nullptr && obj != nullptr);
@@ -311,11 +311,11 @@ public:  /// 事务相关调用(同步)，注意：事务是一对一的
         });
         {
             std::lock_guard<std::mutex> lock(affair_mutex_);
-            affair_[msg_key] = func;
+            affair_[key] = func;
         }
     }
     template<typename C, typename R, typename... Args>
-    void attach(const MessageKey& msg_key, C* obj, R(C::*mem_func)(Args...) volatile)
+    void attach(const MessageKey& key, C* obj, R(C::*mem_func)(Args...) volatile)
     {
         using affair_func_t = std::function<R(Args...)>;
         assert(mem_func != nullptr && obj != nullptr);
@@ -324,11 +324,11 @@ public:  /// 事务相关调用(同步)，注意：事务是一对一的
         });
         {
             std::lock_guard<std::mutex> lock(affair_mutex_);
-            affair_[msg_key] = func;
+            affair_[key] = func;
         }
     }
     template<typename C, typename R, typename... Args>
-    void attach(const MessageKey& msg_key, C* obj, R(C::*mem_func)(Args...) const volatile)
+    void attach(const MessageKey& key, C* obj, R(C::*mem_func)(Args...) const volatile)
     {
         using affair_func_t = std::function<R(Args...)>;
         assert(mem_func != nullptr && obj != nullptr);
@@ -337,7 +337,7 @@ public:  /// 事务相关调用(同步)，注意：事务是一对一的
         });
         {
             std::lock_guard<std::mutex> lock(affair_mutex_);
-            affair_[msg_key] = func;
+            affair_[key] = func;
         }
     }
 
@@ -345,10 +345,10 @@ public:  /// 事务相关调用(同步)，注意：事务是一对一的
      * @brief       反注册某个事务
      * @param[in]   通知key
      */
-    void detach(const MessageKey& msg_key)
+    void detach(const MessageKey& key)
     {
         std::lock_guard<std::mutex> lock(affair_mutex_);
-        affair_.erase(msg_key);
+        affair_.erase(key);
     }
 
     /**
@@ -356,16 +356,16 @@ public:  /// 事务相关调用(同步)，注意：事务是一对一的
      * @param[in]   事务key
      * @param[in]   参数
      * @return      调用结果
-     * @ps          调用者确保 msg_key 已经 attach
+     * @ps          调用者确保 key 已经 attach
      */
     template<typename R, typename... Args>
-    R runSync(const MessageKey& msg_key, Args... args)
+    R runSync(const MessageKey& key, Args... args)
     {
         using affair_func_t = std::function<R(Args...)>;
         affair_func_t func;
         {
             std::lock_guard<std::mutex> lock(affair_mutex_);
-            auto iter = affair_.find(msg_key);
+            auto iter = affair_.find(key);
             assert(iter != affair_.end());
 #ifdef USE_HALCYON_ANY
             // 使用 gcc 编译有问题?
@@ -392,19 +392,19 @@ private:
     /**
      * @brief   添加通知
      */
-    void addNotify(const MessageKey& notifyKey, NotifyValue&& notifyValue)
+    void addNotify(const MessageKey& key, NotifyValue&& value)
     {
         std::lock_guard<std::mutex> lock(notify_mutex_);
-        notify_.emplace(std::move(notifyKey), std::forward<NotifyValue>(notifyValue));
+        notify_.emplace(std::move(key), std::forward<NotifyValue>(value));
     }
 
     /**
      * @brief   删除通知
      */
-    void delNotify(const MessageKey& notifyKey, uintptr_t identity)
+    void delNotify(const MessageKey& key, uintptr_t identity)
     {
         std::lock_guard<std::mutex> lock(notify_mutex_);
-        auto range = notify_.equal_range(notifyKey);
+        auto range = notify_.equal_range(key);
         for (auto iter = range.first; iter != range.second; ++iter) {
             NotifyValue& value = iter->second;
             if (value.identity == identity) {

@@ -14,6 +14,10 @@
 
 BASE_BEGIN_NAMESPACE
 
+#ifndef USE_HALCYON_STRING_VIEW
+using std::string_view;
+#endif
+
 /// MD5
 class HALCYON_BASE_API MD5 final : noncopyable
 {
@@ -31,11 +35,7 @@ public:
      * @brief       构造函数
      * @param[in]   字符串
      */
-#ifdef USE_HALCYON_STRING_VIEW
     MD5(string_view str);
-#else
-    MD5(std::string_view str);
-#endif
 
     /**
      * @brief       构造函数(计算文件的MD5)（待优化）
@@ -55,11 +55,7 @@ public:
      * @brief       计算字符串的MD5
      * @param[in]   字符串
      */
-#ifdef USE_HALCYON_STRING_VIEW
     void update(string_view str);
-#else
-    void update(std::string_view str);
-#endif
 
     /**
      * @brief       计算文件的MD5（待优化）
