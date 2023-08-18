@@ -55,6 +55,9 @@
     <Filter Include="queue">
       <UniqueIdentifier>{077e50f3-b317-44d1-8346-03bc183b534b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="file">
+      <UniqueIdentifier>{17f2d21e-23f0-4946-a90f-0334404e6ce5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\base\base64\base64.h">
@@ -144,6 +147,9 @@
     <ClInclude Include="..\..\include\base\queue\spsc_queue.h">
       <Filter>queue</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\base\file\file_opt.h">
+      <Filter>file</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\base64\base64.cpp">
@@ -157,6 +163,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\thread\thread_pool.cpp">
       <Filter>thread</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\file\file_opt.cpp">
+      <Filter>file</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
