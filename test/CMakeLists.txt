@@ -86,6 +86,10 @@ add_executable(ut_defer ${SRC_PATH}/ut_defer.cpp)
 # elapsed_timer
 add_executable(ut_elapsed_timer ${SRC_PATH}/ut_elapsed_timer.cpp)
 
+# file_opt
+add_executable(ut_file_opt ${SRC_PATH}/ut_file_opt.cpp)
+target_link_libraries(ut_file_opt gtest halcyon_base pthread)
+
 # md5
 add_executable(ut_md5 ${SRC_PATH}/ut_md5.cpp)
 target_link_libraries(ut_md5 gtest halcyon_base pthread)

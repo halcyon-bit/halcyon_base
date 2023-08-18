@@ -57,6 +57,7 @@ aux_source_directory(${SRC_PATH} SRC_FILE)
 aux_source_directory(${SRC_PATH}/base64 SRC_FILE)
 aux_source_directory(${SRC_PATH}/md5 SRC_FILE)
 aux_source_directory(${SRC_PATH}/thread SRC_FILE)
+aux_source_directory(${SRC_PATH}/file SRC_FILE)
 
 # 生成静态库
 add_library(halcyon_base ${SRC_FILE})

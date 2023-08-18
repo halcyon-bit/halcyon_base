@@ -3,6 +3,7 @@
 #if defined USE_CPP11 || defined USE_CPP14
 
 #ifdef LINUX
+#include <string.h>
 #include <unistd.h>
 #include <dirent.h>
 #include <sys/stat.h>
@@ -84,8 +85,8 @@ static bool removeAll(string_view dir)
     // 删除该文件夹下的所有文件(夹)
     while ((dirp = readdir(new_dir)) != nullptr) {
         if (dirp->d_type == DT_DIR) {
-            if (strcmp(dirp->d_name[0], ".") == 0
-                || strcmp(dirp_d_name[0], "..") == 0)
+            if (strcmp(dirp->d_name, ".") == 0
+                || strcmp(dirp->d_name, "..") == 0)
                 continue;
 
             path.erase(path.rfind("/") + 1);
@@ -176,8 +177,8 @@ static void listAll(string_view dir, std::vector<std::string>& dirs, std::vector
 
     while ((dirp = readdir(new_dir)) != nullptr) {
         if (dirp->d_type == DT_DIR) {
-            if (strcmp(dirp->d_name[0], ".") == 0
-                || strcmp(dirp_d_name[0], "..") == 0)
+            if (strcmp(dirp->d_name, ".") == 0
+                || strcmp(dirp->d_name, "..") == 0)
                 continue;
 
             dirs.push_back(dirp->d_name);
