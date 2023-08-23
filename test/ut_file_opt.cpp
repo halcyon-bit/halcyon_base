@@ -197,6 +197,26 @@ TEST(FileOptTest, listDir)
     base::file::removeDir("./test");
 }
 
+TEST(FileOptTest, removeFile)
+{
+    bool ret = base::file::createDir("./test");
+
+    std::string filePath{ "./test/123.txt" };
+    FILE* fp = fopen(filePath.c_str(), "a+");
+    fclose(fp);
+
+    ret = base::file::exists(filePath);
+    EXPECT_EQ(ret, true);
+
+    ret = base::file::removeFile(filePath);
+    EXPECT_EQ(ret, true);
+    
+    ret = base::file::exists(filePath);
+    EXPECT_EQ(ret, false);
+
+    base::file::removeDir("./test");
+}
+
 int main(int argc, char* argv[])
 {
     testing::InitGoogleTest(&argc, argv);

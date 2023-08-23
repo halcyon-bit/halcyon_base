@@ -36,6 +36,9 @@ bool file::exists(string_view filename)
 
 bool file::createDir(string_view dir)
 {
+    if (dir[dir.size() - 1] == '/' || dir[dir.size() - 1] == '\\') {
+        return false;
+    }
 #if defined USE_CPP11 || defined USE_CPP14
     bool ret = false;
     size_t start = dir.find("/");
@@ -243,6 +246,15 @@ void file::listDir(string_view dir, std::vector<std::string>& dirs, std::vector<
             files.push_back(filename.string());
         }
     }
+#endif
+}
+
+bool file::removeFile(string_view file)
+{
+#if defined USE_CPP11 || defined USE_CPP14
+    return remove(file.data()) == 0;
+#else
+    return std::filesystem::remove(file.data());
 #endif
 }
 
