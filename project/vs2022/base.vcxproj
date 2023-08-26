@@ -16,7 +16,7 @@
     <ClInclude Include="..\..\include\base\common\base_define.h" />
     <ClInclude Include="..\..\include\base\common\noncopyable.h" />
     <ClInclude Include="..\..\include\base\common\platform.h" />
-    <ClInclude Include="..\..\include\base\file\file_opt.h" />
+    <ClInclude Include="..\..\include\base\file\file_utils.h" />
     <ClInclude Include="..\..\include\base\function\defer.h" />
     <ClInclude Include="..\..\include\base\function\weak_callback.h" />
     <ClInclude Include="..\..\include\base\md5\md5.h" />
@@ -44,7 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\base64\base64.cpp" />
-    <ClCompile Include="..\..\src\file\file_opt.cpp" />
+    <ClCompile Include="..\..\src\file\file_utils.cpp" />
     <ClCompile Include="..\..\src\md5\md5.cpp" />
     <ClCompile Include="..\..\src\thread\thread_pool.cpp" />
     <ClCompile Include="..\..\src\version.cpp" />

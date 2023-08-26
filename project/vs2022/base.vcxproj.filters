@@ -147,7 +147,7 @@
     <ClInclude Include="..\..\include\base\queue\spsc_queue.h">
       <Filter>queue</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\base\file\file_opt.h">
+    <ClInclude Include="..\..\include\base\file\file_utils.h">
       <Filter>file</Filter>
     </ClInclude>
   </ItemGroup>
@@ -164,7 +164,7 @@
     <ClCompile Include="..\..\src\thread\thread_pool.cpp">
       <Filter>thread</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\file\file_opt.cpp">
+    <ClCompile Include="..\..\src\file\file_utils.cpp">
       <Filter>file</Filter>
     </ClCompile>
   </ItemGroup>
