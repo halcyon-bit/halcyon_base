@@ -1,13 +1,13 @@
 ﻿#ifndef BASE_BLOCKING_QUEUE_H
 #define BASE_BLOCKING_QUEUE_H
 
-#include <base/common/noncopyable.h>
-
 #include <deque>
 #include <mutex>
 #include <chrono>
 #include <cassert>
 #include <condition_variable>
+
+#include <base/common/noncopyable.h>
 
 BASE_BEGIN_NAMESPACE
 
@@ -16,7 +16,7 @@ BASE_BEGIN_NAMESPACE
  * @ps      每次 take(无超时) 必获取数据, 所以停止需要自定义规则
  */
 template<typename T>
-class BlockingQueue : noncopyable
+class BlockingQueue final : noncopyable
 {
 public:
     BlockingQueue() = default;

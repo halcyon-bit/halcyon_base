@@ -1,9 +1,9 @@
 ﻿#ifndef BASE_VARIANT_H
 #define BASE_VARIANT_H
 
-#include <base/utility/utility.h>
-
 #include <typeindex>
+
+#include <base/utility/utility.h>
 
 BASE_BEGIN_NAMESPACE
 
@@ -76,7 +76,7 @@ namespace detail
  * @ps      C++17 std::variant
  */
 template<typename... T>
-class Variant
+class Variant final
 {
     static_assert(sizeof...(T) > 0, "no template arguments!");
 

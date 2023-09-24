@@ -1,8 +1,6 @@
 ﻿#ifndef BASE_TYPE_H
 #define BASE_TYPE_H
 
-#include <base/common/base_define.h>
-
 #ifndef NDEBUG
 #include <assert.h>
 #endif
@@ -11,6 +9,8 @@
 #include <iterator>
 #include <functional>
 #include <type_traits>
+
+#include <base/common/base_define.h>
 
 // C++14
 #ifdef USE_CPP11

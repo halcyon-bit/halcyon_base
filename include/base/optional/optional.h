@@ -1,9 +1,9 @@
 ﻿#ifndef BASE_OPTIONAL_H
 #define BASE_OPTIONAL_H
 
-#include <base/utility/type.h>  // std::aligned_storage_t
-
 #include <stdexcept>
+
+#include <base/utility/type.h>  // std::aligned_storage_t
 
 BASE_BEGIN_NAMESPACE
 
@@ -14,19 +14,20 @@ BASE_BEGIN_NAMESPACE
  * @ps      C++17 中已有 std::optional 类型
  */
 template<typename T>
-class Optional
+class Optional final
 {
     using value_type = std::aligned_storage_t<sizeof(T), std::alignment_of<T>::value>;
+
 public:  // 构造函数
     Optional()
     {}
 
-    Optional(const T& val)
+    explicit Optional(const T& val)
     {
         create(val);
     }
 
-    Optional(T&& val)
+    explicit Optional(T&& val)
     {
         create(std::forward<T>(val));
     }

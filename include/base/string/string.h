@@ -1,11 +1,12 @@
-﻿#pragma once
-
-#include <base/utility/utility.h>
+﻿#ifndef BASE_STRING_H
+#define BASE_STRING_H
 
 #include <atomic>
 #include <cstring>
 #include <cassert>
 #include <algorithm>
+
+#include <base/utility/utility.h>
 
 #ifdef USE_HALCYON_STRING_VIEW
 #include <base/string/string_view.h>
@@ -1045,7 +1046,7 @@ public:
 /// 字符串
 template<typename CharT, typename Traits = std::char_traits<CharT>, typename Alloc = std::allocator<CharT>,
     typename Storage = string_core<CharT, Traits>>
-class basic_string
+class basic_string final
 {
 public:
     using traits_type = Traits;
@@ -2628,3 +2629,5 @@ namespace std
         }
     };
 }
+
+#endif

@@ -1,9 +1,9 @@
 ﻿#ifndef BASE_DEFER_H
 #define BASE_DEFER_H
 
-#include <base/common/noncopyable.h>
-
 #include <functional>
+
+#include <base/common/noncopyable.h>
 
 /**
  * @brief   defer 语句定义一个延迟执行闭包函数的对象

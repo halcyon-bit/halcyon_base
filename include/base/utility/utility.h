@@ -1,15 +1,15 @@
 ﻿#ifndef BASE_UTILITY_H
 #define BASE_UTILITY_H
 
-#include <base/utility/type.h>
-
 #include <utility>
 #include <stdexcept>
 
+#include <base/utility/type.h>
+
 #ifdef USE_HALCYON_INDEX_SEQUENCE
-#define HALCYON_INDEX_NS   base::
+#define HALCYON_INDEX_NS   ::halcyon::base::
 #else
-#define HALCYON_INDEX_NS   std::
+#define HALCYON_INDEX_NS   ::std::
 #endif
 
 #ifdef USE_CPP11

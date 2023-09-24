@@ -1,9 +1,9 @@
 ﻿#ifndef BASE_THREAD_TASK_H
 #define BASE_THREAD_TASK_H
 
-#include <base/task/task.h>
-
 #include <future>
+
+#include <base/task/task.h>
 
 BASE_BEGIN_NAMESPACE
 
@@ -44,11 +44,7 @@ public:
      *            非0，则 timeout 时间内没有结果返回失败。
      * @ps          是否可以不用 any 实现？
      */
-#ifdef USE_HALCYON_ANY
     bool result(Any& value, uint64_t timeout = 0) override
-#else
-    bool result(std::any& value, uint64_t timeout = 0) override
-#endif
     {
         if (timeout == 0) {
             resultAux(value, std::is_same<T, void>());
@@ -67,20 +63,12 @@ private:
     /**
      * @brief   处理返回值为 void 类型的情况
      */
-#ifdef USE_HALCYON_ANY
     void resultAux(Any& value, std::true_type)
-#else
-    void resultAux(std::any& value, std::true_type)
-#endif
     {
         result_.wait();
     }
 
-#ifdef USE_HALCYON_ANY
     void resultAux(Any& value, std::false_type)
-#else
-    void resultAux(std::any& value, std::false_type)
-#endif
     {
         value = result_.get();
     }

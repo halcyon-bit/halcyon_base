@@ -1,11 +1,11 @@
 ﻿#ifndef BASE_STRING_VIEW_H
 #define BASE_STRING_VIEW_H
 
-#include <base/utility/utility.h>
-
 #include <string>
 #include <stdexcept>
 #include <algorithm>
+
+#include <base/utility/utility.h>
 
 BASE_BEGIN_NAMESPACE
 
@@ -14,7 +14,7 @@ BASE_BEGIN_NAMESPACE
  * @ps      C++17 中已有 std::string_view 类型
  */
 template<typename CharT, typename Traits>
-class basic_string_view
+class basic_string_view final
 {
 public:
     using traits_type = Traits;

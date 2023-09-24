@@ -1,9 +1,9 @@
 ﻿#ifndef BASE_BASE64_H
 #define BASE_BASE64_H
 
-#include <base/common/noncopyable.h>
-
 #include <string>
+
+#include <base/common/noncopyable.h>
 
 BASE_BEGIN_NAMESPACE
 

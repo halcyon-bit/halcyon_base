@@ -1,10 +1,10 @@
 ﻿#ifndef BASE_ANY_H
 #define BASE_ANY_H
 
-#include <base/utility/type.h>  // std::decay_t, std::enable_if_t
-
 #include <memory>
 #include <typeindex>
+
+#include <base/utility/type.h>  // std::decay_t, std::enable_if_t
 
 BASE_BEGIN_NAMESPACE
 

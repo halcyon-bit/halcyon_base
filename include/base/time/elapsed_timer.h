@@ -1,9 +1,9 @@
 ﻿#ifndef BASE_ELAPSED_TIMER_H
 #define BASE_ELAPSED_TIMER_H
 
-#include <base/common/noncopyable.h>
-
 #include <chrono>
+
+#include <base/common/noncopyable.h>
 
 BASE_BEGIN_NAMESPACE
 

@@ -1,12 +1,12 @@
 ﻿#ifndef BASE_TIMESTAMP_H
 #define BASE_TIMESTAMP_H
 
-#include <base/common/base_define.h>
-
 #include <chrono>
 #include <string>
 #include <thread>
 #include <cinttypes>
+
+#include <base/common/base_define.h>
 
 BASE_BEGIN_NAMESPACE
 
@@ -79,7 +79,7 @@ inline std::string toString(const Timestamp& time)
     int64_t micros = microSecondsSinceEpoch(time);
     int64_t second = micros / kMicroSecondsPerSecond;
     int64_t microseconds = micros % kMicroSecondsPerSecond;
-    snprintf(buf, sizeof(buf), "%" PRId64 ".%06" PRId64 "", second, microseconds);
+    sprintf_s(buf, sizeof(buf), "%" PRId64 ".%06" PRId64 "", second, microseconds);
     return buf;
 }
 
@@ -104,12 +104,12 @@ inline std::string toFormatString(const Timestamp& time, bool show_microseconds 
     char buf[64] = { 0 };
     if (show_microseconds) {
         int32_t microseconds = static_cast<int32_t>(micros % kMicroSecondsPerSecond);
-        snprintf(buf, sizeof(buf), "%4d%02d%02d %02d:%02d:%02d.%06d",
+        sprintf_s(buf, sizeof(buf), "%4d%02d%02d %02d:%02d:%02d.%06d",
             tm_time.tm_year + 1900, tm_time.tm_mon + 1, tm_time.tm_mday,
             tm_time.tm_hour, tm_time.tm_min, tm_time.tm_sec,
             microseconds);
     } else {
-        snprintf(buf, sizeof(buf), "%4d%02d%02d %02d:%02d:%02d",
+        sprintf_s(buf, sizeof(buf), "%4d%02d%02d %02d:%02d:%02d",
             tm_time.tm_year + 1900, tm_time.tm_mon + 1, tm_time.tm_mday,
             tm_time.tm_hour, tm_time.tm_min, tm_time.tm_sec);
     }

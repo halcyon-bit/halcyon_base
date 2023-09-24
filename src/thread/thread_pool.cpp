@@ -15,7 +15,7 @@ public:
     /**
      * @brief   构造函数
      */
-    explicit ThreadPoolImpl() noexcept;
+    ThreadPoolImpl();
 
     /**
      * @brief   析构函数
@@ -104,7 +104,7 @@ BASE_END_NAMESPACE
 
 using namespace halcyon::base;
 
-ThreadPoolImpl::ThreadPoolImpl() noexcept
+ThreadPoolImpl::ThreadPoolImpl()
 {}
 
 ThreadPoolImpl::~ThreadPoolImpl()
@@ -173,7 +173,7 @@ void ThreadPoolImpl::threadProc()
     }
 }
 
-ThreadPool::ThreadPool() noexcept
+ThreadPool::ThreadPool()
     : impl_(new ThreadPoolImpl)
 {}
 

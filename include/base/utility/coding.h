@@ -1,15 +1,16 @@
 ﻿#ifndef BASE_CODING_H
 #define BASE_CODING_H
 
-#include <base/common/base_define.h>
+#include <locale>
+#include <codecvt>
 
-#include<locale>
-#include<codecvt>
+#include <base/common/base_define.h>
 
 BASE_BEGIN_NAMESPACE
 
 /**
  * @brief   编码转换
+ * @ps      C++20 好像弃用 wstring_convert
  */
 inline std::string utf8_to_gbk(const std::string& str)
 {

@@ -1,11 +1,11 @@
 ﻿#ifndef BASE_THREAD_H
 #define BASE_THREAD_H
 
-#include <base/thread/thread_task.h>
-#include <base/queue/blocking_queue.h>
-
 #include <thread>
 #include <atomic>
+
+#include <base/thread/thread_task.h>
+#include <base/queue/blocking_queue.h>
 
 BASE_BEGIN_NAMESPACE
 

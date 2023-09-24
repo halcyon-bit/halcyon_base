@@ -9,16 +9,15 @@
 #define BASE_CACHELINE_BYTES    64
 #endif
 
-#include <base/common/noncopyable.h>
-
 #include <atomic>
 #include <memory>
+
+#include <base/common/noncopyable.h>
 #include <base/utility/type.h>
 
 BASE_BEGIN_NAMESPACE
 
 /// 单消费者、单生产者的无锁队列
-
 namespace detail
 {
     /// 循环队列基类
@@ -347,7 +346,7 @@ namespace detail
  * @ps      MaxSize 为 0，队列动态创建，运行期队列；不为 0，队列为静态数组，编译期队列
  */
 template<typename T, std::size_t MaxSize = 0>
-class SPSCQueue 
+class SPSCQueue final
     : private std::conditional<MaxSize == 0, detail::RunTimeRingBuffer<T>, detail::CompileRingBuffer<T, MaxSize>>::type
 {
 public:

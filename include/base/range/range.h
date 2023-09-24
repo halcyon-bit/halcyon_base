@@ -1,9 +1,9 @@
 ﻿#ifndef BASE_RANGE_H
 #define BASE_RANGE_H
 
-#include <base/common/base_define.h>
-
 #include <stdexcept>
+
+#include <base/common/base_define.h>
 
 BASE_BEGIN_NAMESPACE
 

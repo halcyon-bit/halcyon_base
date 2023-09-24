@@ -123,7 +123,7 @@ int32_t globalDealNoitfy1(const std::string& str)
 {
     std::cout << "\trecv notify1 in globalDealNoitfy1, threadId: "
         << std::this_thread::get_id() << ", info: " << str << "\n\n";
-    return str.size();
+    return static_cast<int32_t>(str.size());
 }
 
 static void globalDealNoitfy2(const std::string& str, int32_t n)

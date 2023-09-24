@@ -1,11 +1,11 @@
 ﻿#ifndef BASE_SINGLETON_H
 #define BASE_SINGLETON_H
 
-#include <base/common/noncopyable.h>
-
 #include <mutex>
 #include <cstdlib>
 #include <cassert>
+
+#include <base/common/noncopyable.h>
 
 BASE_BEGIN_NAMESPACE
 
@@ -35,7 +35,7 @@ namespace detail
 
 /// 单例
 template<typename T>
-class Singleton : noncopyable
+class Singleton final : noncopyable
 {
 public:
     Singleton() = delete;

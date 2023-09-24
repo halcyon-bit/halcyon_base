@@ -1,15 +1,14 @@
 ﻿#ifndef BASE_FILE_OPT_H
 #define BASE_FILE_OPT_H
 
-#include <base/common/base_define.h>
+#include <vector>
 
+#include <base/common/base_define.h>
 #ifdef USE_HALCYON_STRING_VIEW
 #include <base/string/string_view.h>
 #else
 #include <string_view>
 #endif
-
-#include <vector>
 
 BASE_BEGIN_NAMESPACE
 

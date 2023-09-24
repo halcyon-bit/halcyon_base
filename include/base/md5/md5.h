@@ -1,10 +1,10 @@
 ﻿#ifndef BASE_MD5_H
 #define BASE_MD5_H
 
-#include <base/common/noncopyable.h>
-
 #include <string>
 #include <fstream>
+
+#include <base/common/noncopyable.h>
 
 #ifdef USE_HALCYON_STRING_VIEW
 #include <base/string/string_view.h>

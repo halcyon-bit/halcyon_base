@@ -1,10 +1,10 @@
 ﻿#ifndef BASE_THREAD_POOL_H
 #define BASE_THREAD_POOL_H
 
+#include <thread>
+
 #include <base/common/noncopyable.h>
 #include <base/thread/thread_task.h>
-
-#include <thread>
 
 BASE_BEGIN_NAMESPACE
 
@@ -17,7 +17,7 @@ public:
     /**
      * @brief   构造函数
      */
-    explicit ThreadPool() noexcept;
+    ThreadPool();
 
     /**
      * @brief   析构函数

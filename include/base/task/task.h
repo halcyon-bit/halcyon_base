@@ -1,17 +1,22 @@
 ﻿#ifndef BASE_TASK_H
 #define BASE_TASK_H
 
+#include <mutex>
+#include <memory>
+#include <functional>
+
 #include <base/common/base_define.h>
 #ifdef USE_HALCYON_ANY
 #include <base/any/any.h>
 #else
 #include <any>
 #endif
-#include <mutex>
-#include <memory>
-#include <functional>
 
 BASE_BEGIN_NAMESPACE
+
+#ifndef USE_HALCYON_ANY
+using Any = std::any;
+#endif
 
 class Task;
 inline void defaultCallback(Task*)
@@ -134,11 +139,7 @@ public:
      *            非0，则 timeout 时间内没有结果返回失败。
      * @ps          是否可以不用 any 实现？
      */
-#ifdef USE_HALCYON_ANY
     virtual bool result(Any& value, uint64_t timeout = 0) = 0;
-#else
-    virtual bool result(std::any& value, uint64_t timeout = 0) = 0;
-#endif
 
 protected:
     /**
