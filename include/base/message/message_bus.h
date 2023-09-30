@@ -11,7 +11,7 @@
 #include <any>
 #endif
 
-BASE_BEGIN_NAMESPACE
+HALCYON_BASE_BEGIN_NAMESPACE
 
 #ifdef WINDOWS
 #pragma warning(disable: 4477)
@@ -527,6 +527,6 @@ private:  /// 事务数据
 #pragma warning(default: 4477)
 #endif
 
-BASE_END_NAMESPACE
+HALCYON_BASE_END_NAMESPACE
 
 #endif

@@ -5,7 +5,7 @@
 
 #include <base/utility/utility.h>
 
-BASE_BEGIN_NAMESPACE
+HALCYON_BASE_BEGIN_NAMESPACE
 
 namespace detail
 {
@@ -268,6 +268,6 @@ private:
     std::type_index type_;
 };
 
-BASE_END_NAMESPACE
+HALCYON_BASE_END_NAMESPACE
 
 #endif

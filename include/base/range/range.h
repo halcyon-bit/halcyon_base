@@ -5,7 +5,7 @@
 
 #include <base/common/base_define.h>
 
-BASE_BEGIN_NAMESPACE
+HALCYON_BASE_BEGIN_NAMESPACE
 
 /**
  * @brief   Range 类, Range(1, 10) -> [1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -184,6 +184,6 @@ auto range(T begin, T end, U step) -> RangeImpl<decltype(begin + step)>
     return RangeImpl<decltype(begin + step)>(begin, end, step);
 }
 
-BASE_END_NAMESPACE
+HALCYON_BASE_END_NAMESPACE
 
 #endif

@@ -4,14 +4,14 @@
 #include <base/common/platform.h>
 
 #if defined USE_CPP14 || defined USE_CPP11
-#define BASE_BEGIN_NAMESPACE    namespace halcyon { namespace base {
+#define HALCYON_BASE_BEGIN_NAMESPACE    namespace halcyon { namespace base {
 
-#define BASE_END_NAMESPACE      }  }
+#define HALCYON_BASE_END_NAMESPACE      }  }
 #else
 // c++17 以上
-#define BASE_BEGIN_NAMESPACE    namespace halcyon::base {
+#define HALCYON_BASE_BEGIN_NAMESPACE    namespace halcyon::base {
 
-#define BASE_END_NAMESPACE      }
+#define HALCYON_BASE_END_NAMESPACE      }
 #endif
 
 

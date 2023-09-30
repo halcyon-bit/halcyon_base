@@ -15,7 +15,7 @@
 #include <base/common/noncopyable.h>
 #include <base/utility/type.h>
 
-BASE_BEGIN_NAMESPACE
+HALCYON_BASE_BEGIN_NAMESPACE
 
 /// 单消费者、单生产者的无锁队列
 namespace detail
@@ -409,6 +409,6 @@ public:
     }
 };
 
-BASE_END_NAMESPACE
+HALCYON_BASE_END_NAMESPACE
 
 #endif

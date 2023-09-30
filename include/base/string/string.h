@@ -14,7 +14,7 @@
 #include <string_view>
 #endif
 
-BASE_BEGIN_NAMESPACE
+HALCYON_BASE_BEGIN_NAMESPACE
 
 //! 是否不启用SSO（短字符串的存储方式）
 static constexpr bool kDisableSSO{ false };
@@ -2616,7 +2616,7 @@ inline void swap(basic_string<C, T, A, S>& lhs, basic_string<C, T, A, S>& rhs) n
 
 using string = basic_string<char>;
 
-BASE_END_NAMESPACE
+HALCYON_BASE_END_NAMESPACE
 
 namespace std
 {

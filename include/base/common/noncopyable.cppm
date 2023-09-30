@@ -2,7 +2,7 @@
 
 export module noncopyable;
 
-BASE_BEGIN_NAMESPACE
+HALCYON_BASE_BEGIN_NAMESPACE
 
 /**
  * @brief   对象语义的基类
@@ -18,4 +18,4 @@ protected:
     ~noncopyable() = default;
 };
 
-BASE_END_NAMESPACE
+HALCYON_BASE_END_NAMESPACE

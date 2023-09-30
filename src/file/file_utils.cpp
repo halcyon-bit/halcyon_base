@@ -17,7 +17,7 @@
 #include <filesystem>  // c++17
 #endif
 
-BASE_BEGIN_NAMESPACE
+HALCYON_BASE_BEGIN_NAMESPACE
 
 bool file::exists(string_view filename)
 {
@@ -258,4 +258,4 @@ bool file::removeFile(string_view file)
 #endif
 }
 
-BASE_END_NAMESPACE
+HALCYON_BASE_END_NAMESPACE

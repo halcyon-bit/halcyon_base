@@ -5,7 +5,7 @@
 
 #include <base/common/noncopyable.h>
 
-BASE_BEGIN_NAMESPACE
+HALCYON_BASE_BEGIN_NAMESPACE
 
 /// 计时器
 class ElapsedTimer final : noncopyable
@@ -77,6 +77,6 @@ private:
     std::chrono::time_point<std::chrono::high_resolution_clock> begin_;
 };
 
-BASE_END_NAMESPACE
+HALCYON_BASE_END_NAMESPACE
 
 #endif

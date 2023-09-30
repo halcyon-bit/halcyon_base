@@ -25,7 +25,7 @@
 #define _DEFER_ACTION_VAR(a, b) _DEFER_TOKEN_CONNECT(a, b)
 #define _DEFER_TOKEN_CONNECT(a, b) a ## b
 
-BASE_BEGIN_NAMESPACE
+HALCYON_BASE_BEGIN_NAMESPACE
 
 /// 持有闭包函数
 class _DeferredAction final : noncopyable
@@ -78,6 +78,6 @@ _DeferredAction _DeferredActionCtor(T&& p)
     return _DeferredAction(std::forward<T>(p));
 }
 
-BASE_END_NAMESPACE
+HALCYON_BASE_END_NAMESPACE
 
 #endif

@@ -5,7 +5,7 @@
 
 #include <base/task/task.h>
 
-BASE_BEGIN_NAMESPACE
+HALCYON_BASE_BEGIN_NAMESPACE
 
 /// 线程任务
 template<typename T>
@@ -93,6 +93,6 @@ private:
     std::future<T> result_;
 };
 
-BASE_END_NAMESPACE
+HALCYON_BASE_END_NAMESPACE
 
 #endif

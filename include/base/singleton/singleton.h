@@ -7,7 +7,7 @@
 
 #include <base/common/noncopyable.h>
 
-BASE_BEGIN_NAMESPACE
+HALCYON_BASE_BEGIN_NAMESPACE
 
 namespace detail
 {
@@ -82,6 +82,6 @@ std::once_flag Singleton<T>::flag_;
 template<typename T>
 T* Singleton<T>::value_ = nullptr;
 
-BASE_END_NAMESPACE
+HALCYON_BASE_END_NAMESPACE
 
 #endif

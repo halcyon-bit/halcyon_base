@@ -3,7 +3,7 @@
 
 #include <base/common/base_define.h>
 
-BASE_BEGIN_NAMESPACE
+HALCYON_BASE_BEGIN_NAMESPACE
 
 /// 对象语义的基类
 class noncopyable
@@ -17,6 +17,6 @@ protected:
     ~noncopyable() = default;
 };
 
-BASE_END_NAMESPACE
+HALCYON_BASE_END_NAMESPACE
 
 #endif

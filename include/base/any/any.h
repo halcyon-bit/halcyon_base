@@ -6,7 +6,7 @@
 
 #include <base/utility/type.h>  // std::decay_t, std::enable_if_t
 
-BASE_BEGIN_NAMESPACE
+HALCYON_BASE_BEGIN_NAMESPACE
 
 /**
  * @brief   一个特殊的只能容纳一个元素的容器，它可以擦除类型，可以赋给它任何
@@ -160,6 +160,6 @@ private:
     std::type_index type_;
 };
 
-BASE_END_NAMESPACE
+HALCYON_BASE_END_NAMESPACE
 
 #endif

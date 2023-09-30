@@ -5,7 +5,7 @@
 
 #include <base/utility/type.h>  // std::aligned_storage_t
 
-BASE_BEGIN_NAMESPACE
+HALCYON_BASE_BEGIN_NAMESPACE
 
 /**
  * @brief   Optional 管理一个值，既可以存在也可以不存在的值，只有当 Optional
@@ -185,6 +185,6 @@ private:
     value_type data_;
 };
 
-BASE_END_NAMESPACE
+HALCYON_BASE_END_NAMESPACE
 
 #endif

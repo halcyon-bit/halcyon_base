@@ -12,7 +12,7 @@
 #include <string_view>
 #endif
 
-BASE_BEGIN_NAMESPACE
+HALCYON_BASE_BEGIN_NAMESPACE
 
 #ifndef USE_HALCYON_STRING_VIEW
 using std::string_view;
@@ -129,6 +129,6 @@ private:
     static const size_t kBufferSize = 1024;
 };
 
-BASE_END_NAMESPACE
+HALCYON_BASE_END_NAMESPACE
 
 #endif

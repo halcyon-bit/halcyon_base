@@ -9,7 +9,7 @@
 
 #include <base/common/noncopyable.h>
 
-BASE_BEGIN_NAMESPACE
+HALCYON_BASE_BEGIN_NAMESPACE
 
 /**
  * @brief   带锁的队列(暂不支持多线程退出，需要多次唤醒)
@@ -112,6 +112,6 @@ private:
     std::deque<T> queue_;
 };
 
-BASE_END_NAMESPACE
+HALCYON_BASE_END_NAMESPACE
 
 #endif

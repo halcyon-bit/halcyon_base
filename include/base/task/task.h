@@ -12,7 +12,7 @@
 #include <any>
 #endif
 
-BASE_BEGIN_NAMESPACE
+HALCYON_BASE_BEGIN_NAMESPACE
 
 #ifndef USE_HALCYON_ANY
 using Any = std::any;
@@ -186,6 +186,6 @@ protected:
 using TaskSPtr = std::shared_ptr<Task>;
 using TaskWPtr = std::weak_ptr<Task>;
 
-BASE_END_NAMESPACE
+HALCYON_BASE_END_NAMESPACE
 
 #endif

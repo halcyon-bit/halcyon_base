@@ -5,7 +5,7 @@
 
 #include <base/common/noncopyable.h>
 
-BASE_BEGIN_NAMESPACE
+HALCYON_BASE_BEGIN_NAMESPACE
 
 /// base64 编码与解码
 class HALCYON_BASE_API Base64 final : noncopyable
@@ -32,6 +32,6 @@ public:
     std::string decode(const char* str, int32_t length);
 };
 
-BASE_END_NAMESPACE
+HALCYON_BASE_END_NAMESPACE
 
 #endif

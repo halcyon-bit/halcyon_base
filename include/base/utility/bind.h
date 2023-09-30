@@ -6,7 +6,7 @@
 // 模拟 std::bind
 #ifdef USE_HALCYON_INVOKE_APPLY
 
-BASE_BEGIN_NAMESPACE
+HALCYON_BASE_BEGIN_NAMESPACE
 
 template<size_t I>
 struct Placeholder
@@ -66,7 +66,7 @@ inline Bind_t<F, Args...> bind(F&& f, Args&&... args)
     return Bind_t<F, Args...>(std::forward<F>(f), std::forward<Args>(args)...);
 }
 
-BASE_END_NAMESPACE
+HALCYON_BASE_END_NAMESPACE
 
 #endif  // USE_HALCYON_INVOKE_APPLY
 

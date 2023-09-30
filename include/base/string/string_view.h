@@ -7,7 +7,7 @@
 
 #include <base/utility/utility.h>
 
-BASE_BEGIN_NAMESPACE
+HALCYON_BASE_BEGIN_NAMESPACE
 
 /**
  * @brief   用于处理只读字符串的轻量对象
@@ -643,7 +643,7 @@ inline bool operator>=(const CharT* lhs, basic_string_view<CharT, Traits> rhs) n
 
 using string_view = basic_string_view<char, std::char_traits<char>>;
 
-BASE_END_NAMESPACE
+HALCYON_BASE_END_NAMESPACE
 
 namespace std
 {

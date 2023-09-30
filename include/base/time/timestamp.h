@@ -8,7 +8,7 @@
 
 #include <base/common/base_define.h>
 
-BASE_BEGIN_NAMESPACE
+HALCYON_BASE_BEGIN_NAMESPACE
 
 using Microsecond = std::chrono::microseconds;
 using Millisecond = std::chrono::milliseconds;
@@ -189,6 +189,6 @@ inline double timeDifference(Timestamp high, Timestamp low)
     return static_cast<double>(diff) / kMilliSecondsPerSecond;
 }
 
-BASE_END_NAMESPACE
+HALCYON_BASE_END_NAMESPACE
 
 #endif

@@ -6,7 +6,7 @@
 #include <thread>
 #include <cassert>
 
-BASE_BEGIN_NAMESPACE
+HALCYON_BASE_BEGIN_NAMESPACE
 
 /// 线程池(调整任务类型为 ThreadTask)
 class ThreadPoolImpl : noncopyable
@@ -100,7 +100,7 @@ private:
     bool started_{ false };
 };
 
-BASE_END_NAMESPACE
+HALCYON_BASE_END_NAMESPACE
 
 using namespace halcyon::base;
 

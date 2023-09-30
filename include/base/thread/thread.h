@@ -7,7 +7,7 @@
 #include <base/thread/thread_task.h>
 #include <base/queue/blocking_queue.h>
 
-BASE_BEGIN_NAMESPACE
+HALCYON_BASE_BEGIN_NAMESPACE
 
 /**
  * @brief   线程封装
@@ -130,6 +130,6 @@ private:
 using ThreadSPtr = std::shared_ptr<Thread>;
 using ThreadWPtr = std::weak_ptr<Thread>;
 
-BASE_END_NAMESPACE
+HALCYON_BASE_END_NAMESPACE
 
 #endif

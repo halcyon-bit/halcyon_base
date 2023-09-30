@@ -10,7 +10,7 @@
 #include <string_view>
 #endif
 
-BASE_BEGIN_NAMESPACE
+HALCYON_BASE_BEGIN_NAMESPACE
 
 #ifndef USE_HALCYON_STRING_VIEW
 using std::string_view;
@@ -56,6 +56,6 @@ namespace file
     extern "C" HALCYON_BASE_API bool removeFile(string_view file);
 }
 
-BASE_END_NAMESPACE
+HALCYON_BASE_END_NAMESPACE
 
 #endif

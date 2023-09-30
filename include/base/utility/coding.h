@@ -6,7 +6,7 @@
 
 #include <base/common/base_define.h>
 
-BASE_BEGIN_NAMESPACE
+HALCYON_BASE_BEGIN_NAMESPACE
 
 /**
  * @brief   编码转换
@@ -34,6 +34,6 @@ inline std::string gbk_to_utf8(const std::string& str)
     return cv2.to_bytes(tmp_wstr);
 }
 
-BASE_END_NAMESPACE
+HALCYON_BASE_END_NAMESPACE
 
 #endif

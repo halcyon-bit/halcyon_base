@@ -6,7 +6,7 @@
 
 #include <base/common/base_define.h>
 
-BASE_BEGIN_NAMESPACE
+HALCYON_BASE_BEGIN_NAMESPACE
 
 /// 弱回调(C: 类, 针对类的成员函数)
 template<typename C, typename... Args>
@@ -61,6 +61,6 @@ WeakCallback<C, Args...> makeWeakCallback(const std::shared_ptr<C>& object,
     return WeakCallback<C, Args...>(object, func);
 }
 
-BASE_END_NAMESPACE
+HALCYON_BASE_END_NAMESPACE
 
 #endif

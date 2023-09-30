@@ -6,7 +6,7 @@
 #include <base/common/noncopyable.h>
 #include <base/thread/thread_task.h>
 
-BASE_BEGIN_NAMESPACE
+HALCYON_BASE_BEGIN_NAMESPACE
 
 class ThreadPoolImpl;
 
@@ -89,6 +89,6 @@ private:
     ThreadPoolImpl* impl_;
 };
 
-BASE_END_NAMESPACE
+HALCYON_BASE_END_NAMESPACE
 
 #endif

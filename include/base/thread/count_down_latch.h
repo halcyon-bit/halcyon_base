@@ -7,7 +7,7 @@
 
 #include <base/common/noncopyable.h>
 
-BASE_BEGIN_NAMESPACE
+HALCYON_BASE_BEGIN_NAMESPACE
 
 /**
  * @brief   同步工具类
@@ -81,6 +81,6 @@ private:
     int32_t count_;
 };
 
-BASE_END_NAMESPACE
+HALCYON_BASE_END_NAMESPACE
 
 #endif

@@ -28,7 +28,7 @@ namespace std
 #endif  // USE_CPP11
 
 
-BASE_BEGIN_NAMESPACE
+HALCYON_BASE_BEGIN_NAMESPACE
 ////////////////////////////////////////// genHashFunction //////////////////////////////////////////
 /* MurmurHash2, by Austin Appleby
  * Note - This code makes a few assumptions about how your machine behaves -
@@ -309,7 +309,7 @@ decltype(auto) zip(const std::tuple<Args1...>& t1, const std::tuple<Args2...>& t
     return detail::pairs_helper(HALCYON_INDEX_NS make_index_sequence<sizeof...(Args1)>(), t1, t2);
 }
 
-BASE_END_NAMESPACE
+HALCYON_BASE_END_NAMESPACE
 
 
 #ifdef _BASE_TEST_
@@ -317,7 +317,7 @@ BASE_END_NAMESPACE
 #include <string>
 #include <memory>
 
-BASE_BEGIN_NAMESPACE
+HALCYON_BASE_BEGIN_NAMESPACE
 
 template<typename T>
 std::string typeName()
@@ -336,7 +336,7 @@ std::string typeName()
     return res;
 }
 
-BASE_END_NAMESPACE
+HALCYON_BASE_END_NAMESPACE
 
 #endif  // _BASE_TEST_
 

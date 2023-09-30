@@ -57,7 +57,7 @@ namespace std
 }
 #endif
 
-BASE_BEGIN_NAMESPACE
+HALCYON_BASE_BEGIN_NAMESPACE
 
 ////////////////////////////////////////// type_convert //////////////////////////////////////////
 // Taken from google-protobuf stubs/common.h
@@ -371,6 +371,6 @@ struct integer_max<arg1, arg2, rest...> : std::integral_constant<size_t, arg1 >=
     ? integer_max<arg1, rest...>::value : integer_max<arg2, rest...>::value>
 {};
 
-BASE_END_NAMESPACE
+HALCYON_BASE_END_NAMESPACE
 
 #endif

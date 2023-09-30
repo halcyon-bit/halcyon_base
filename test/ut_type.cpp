@@ -5,7 +5,7 @@
 #include <iostream>
 #include <memory>
 
-BASE_BEGIN_NAMESPACE
+HALCYON_BASE_BEGIN_NAMESPACE
 
 template<typename T>
 std::string type_name()
@@ -24,7 +24,7 @@ std::string type_name()
     return res;
 }
 
-BASE_END_NAMESPACE
+HALCYON_BASE_END_NAMESPACE
 
 using namespace halcyon;
 
