@@ -1,5 +1,5 @@
-﻿#ifndef BASE_DEFER_H
-#define BASE_DEFER_H
+﻿#ifndef HALCYON_BASE_DEFER_H
+#define HALCYON_BASE_DEFER_H
 
 #include <functional>
 

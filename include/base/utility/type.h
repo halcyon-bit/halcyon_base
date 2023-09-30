@@ -1,5 +1,5 @@
-﻿#ifndef BASE_TYPE_H
-#define BASE_TYPE_H
+﻿#ifndef HALCYON_BASE_TYPE_H
+#define HALCYON_BASE_TYPE_H
 
 #ifndef NDEBUG
 #include <assert.h>

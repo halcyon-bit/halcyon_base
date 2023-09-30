@@ -1,5 +1,5 @@
-﻿#ifndef BASE_BASE64_H
-#define BASE_BASE64_H
+﻿#ifndef HALCYON_BASE_BASE64_H
+#define HALCYON_BASE_BASE64_H
 
 #include <string>
 

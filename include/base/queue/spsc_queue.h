@@ -1,5 +1,5 @@
-﻿#ifndef BASE_SPSC_QUEUE_H
-#define BASE_SPSC_QUEUE_H
+﻿#ifndef HALCYON_BASE_SPSC_QUEUE_H
+#define HALCYON_BASE_SPSC_QUEUE_H
 
 #if defined(__s390__) || defined(__s390x__)
 #define BASE_CACHELINE_BYTES    256

@@ -1,5 +1,5 @@
-﻿#ifndef BASE_NONCOPYABLE_H
-#define BASE_NONCOPYABLE_H
+﻿#ifndef HALCYON_BASE_NONCOPYABLE_H
+#define HALCYON_BASE_NONCOPYABLE_H
 
 #include <base/common/base_define.h>
 

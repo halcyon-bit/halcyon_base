@@ -1,5 +1,5 @@
-﻿#ifndef BASE_COUNT_DOWN_LATCH_H
-#define BASE_COUNT_DOWN_LATCH_H
+﻿#ifndef HALCYON_BASE_COUNT_DOWN_LATCH_H
+#define HALCYON_BASE_COUNT_DOWN_LATCH_H
 
 #include <mutex>
 #include <chrono>

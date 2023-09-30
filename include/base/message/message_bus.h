@@ -1,5 +1,5 @@
-﻿#ifndef BASE_MESSAGE_BUS_H
-#define BASE_MESSAGE_BUS_H
+﻿#ifndef HALCYON_BASE_MESSAGE_BUS_H
+#define HALCYON_BASE_MESSAGE_BUS_H
 
 #include <unordered_map>
 

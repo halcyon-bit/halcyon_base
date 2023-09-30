@@ -1,5 +1,5 @@
-﻿#ifndef BASE_ELAPSED_TIMER_H
-#define BASE_ELAPSED_TIMER_H
+﻿#ifndef HALCYON_BASE_ELAPSED_TIMER_H
+#define HALCYON_BASE_ELAPSED_TIMER_H
 
 #include <chrono>
 

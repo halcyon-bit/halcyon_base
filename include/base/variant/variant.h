@@ -1,5 +1,5 @@
-﻿#ifndef BASE_VARIANT_H
-#define BASE_VARIANT_H
+﻿#ifndef HALCYON_BASE_VARIANT_H
+#define HALCYON_BASE_VARIANT_H
 
 #include <typeindex>
 

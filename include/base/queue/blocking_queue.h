@@ -1,5 +1,5 @@
-﻿#ifndef BASE_BLOCKING_QUEUE_H
-#define BASE_BLOCKING_QUEUE_H
+﻿#ifndef HALCYON_BASE_BLOCKING_QUEUE_H
+#define HALCYON_BASE_BLOCKING_QUEUE_H
 
 #include <deque>
 #include <mutex>

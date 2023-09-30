@@ -1,5 +1,5 @@
-﻿#ifndef BASE_BIND_H
-#define BASE_BIND_H
+﻿#ifndef HALCYON_BASE_BIND_H
+#define HALCYON_BASE_BIND_H
 
 #include <base/utility/utility.h>
 

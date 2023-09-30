@@ -1,5 +1,5 @@
-﻿#ifndef BASE_THREAD_TASK_H
-#define BASE_THREAD_TASK_H
+﻿#ifndef HALCYON_BASE_THREAD_TASK_H
+#define HALCYON_BASE_THREAD_TASK_H
 
 #include <future>
 

@@ -1,5 +1,5 @@
-﻿#ifndef BASE_DEFINE_H
-#define BASE_DEFINE_H
+﻿#ifndef HALCYON_BASE_DEFINE_H
+#define HALCYON_BASE_DEFINE_H
 
 #include <base/common/platform.h>
 

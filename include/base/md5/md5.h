@@ -1,5 +1,5 @@
-﻿#ifndef BASE_MD5_H
-#define BASE_MD5_H
+﻿#ifndef HALCYON_BASE_MD5_H
+#define HALCYON_BASE_MD5_H
 
 #include <string>
 #include <fstream>

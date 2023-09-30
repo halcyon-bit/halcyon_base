@@ -1,5 +1,5 @@
-﻿#ifndef BASE_TIMESTAMP_H
-#define BASE_TIMESTAMP_H
+﻿#ifndef HALCYON_BASE_TIMESTAMP_H
+#define HALCYON_BASE_TIMESTAMP_H
 
 #include <chrono>
 #include <string>

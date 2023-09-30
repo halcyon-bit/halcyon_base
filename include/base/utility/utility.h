@@ -1,5 +1,5 @@
-﻿#ifndef BASE_UTILITY_H
-#define BASE_UTILITY_H
+﻿#ifndef HALCYON_BASE_UTILITY_H
+#define HALCYON_BASE_UTILITY_H
 
 #include <utility>
 #include <stdexcept>

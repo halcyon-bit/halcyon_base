@@ -1,5 +1,5 @@
-﻿#ifndef BASE_STRING_VIEW_H
-#define BASE_STRING_VIEW_H
+﻿#ifndef HALCYON_BASE_STRING_VIEW_H
+#define HALCYON_BASE_STRING_VIEW_H
 
 #include <string>
 #include <stdexcept>

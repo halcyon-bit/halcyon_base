@@ -1,5 +1,5 @@
-﻿#ifndef BASE_THREAD_H
-#define BASE_THREAD_H
+﻿#ifndef HALCYON_BASE_THREAD_H
+#define HALCYON_BASE_THREAD_H
 
 #include <thread>
 #include <atomic>

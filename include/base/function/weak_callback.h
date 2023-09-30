@@ -1,5 +1,5 @@
-﻿#ifndef BASE_WEAK_CALLBACK_H
-#define BASE_WEAK_CALLBACK_H
+﻿#ifndef HALCYON_BASE_WEAK_CALLBACK_H
+#define HALCYON_BASE_WEAK_CALLBACK_H
 
 #include <memory>
 #include <functional>

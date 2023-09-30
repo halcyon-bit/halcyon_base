@@ -1,5 +1,5 @@
-﻿#ifndef BASE_RANGE_H
-#define BASE_RANGE_H
+﻿#ifndef HALCYON_BASE_RANGE_H
+#define HALCYON_BASE_RANGE_H
 
 #include <stdexcept>
 

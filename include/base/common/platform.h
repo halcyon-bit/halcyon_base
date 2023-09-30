@@ -1,5 +1,5 @@
-﻿#ifndef BASE_PLATFORM_H
-#define BASE_PLATFORM_H
+﻿#ifndef HALCYON_BASE_PLATFORM_H
+#define HALCYON_BASE_PLATFORM_H
 
 /// 平台判断
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)

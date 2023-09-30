@@ -1,5 +1,5 @@
-﻿#ifndef BASE_CODING_H
-#define BASE_CODING_H
+﻿#ifndef HALCYON_BASE_CODING_H
+#define HALCYON_BASE_CODING_H
 
 #include <locale>
 #include <codecvt>

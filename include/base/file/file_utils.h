@@ -1,5 +1,5 @@
-﻿#ifndef BASE_FILE_OPT_H
-#define BASE_FILE_OPT_H
+﻿#ifndef HALCYON_BASE_FILE_UTILS_H
+#define HALCYON_BASE_FILE_UTILS_H
 
 #include <vector>
 

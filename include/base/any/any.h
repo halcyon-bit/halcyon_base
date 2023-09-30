@@ -1,5 +1,5 @@
-﻿#ifndef BASE_ANY_H
-#define BASE_ANY_H
+﻿#ifndef HALCYON_BASE_ANY_H
+#define HALCYON_BASE_ANY_H
 
 #include <memory>
 #include <typeindex>

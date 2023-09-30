@@ -1,5 +1,5 @@
-﻿#ifndef BASE_STRING_H
-#define BASE_STRING_H
+﻿#ifndef HALCYON_BASE_STRING_H
+#define HALCYON_BASE_STRING_H
 
 #include <atomic>
 #include <cstring>

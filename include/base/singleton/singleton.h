@@ -1,5 +1,5 @@
-﻿#ifndef BASE_SINGLETON_H
-#define BASE_SINGLETON_H
+﻿#ifndef HALCYON_BASE_SINGLETON_H
+#define HALCYON_BASE_SINGLETON_H
 
 #include <mutex>
 #include <cstdlib>

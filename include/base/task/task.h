@@ -1,5 +1,5 @@
-﻿#ifndef BASE_TASK_H
-#define BASE_TASK_H
+﻿#ifndef HALCYON_BASE_TASK_H
+#define HALCYON_BASE_TASK_H
 
 #include <mutex>
 #include <memory>

@@ -1,5 +1,5 @@
-﻿#ifndef BASE_VERSION_H
-#define BASE_VERSION_H
+﻿#ifndef HALCYON_BASE_VERSION_H
+#define HALCYON_BASE_VERSION_H
 
 #include <base/common/base_define.h>
 
