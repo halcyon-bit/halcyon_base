@@ -11,10 +11,6 @@
 #include <any>
 #endif
 
-#ifndef WINDOWS
-#define _atoi64(val)    strtoll(val, nullptr, 10)
-#endif
-
 BASE_BEGIN_NAMESPACE
 
 #ifdef WINDOWS
@@ -106,9 +102,14 @@ public:  /// 通知相关接口(异步)，注意：通知一般是一对多的
         });
 
         char buf[64]{ 0 };
+#ifdef WINDOWS
         (void)sprintf_s(buf, sizeof(buf), "%llu", mem_func);
+#else
+        (void)snprintf(buf, sizeof(buf), "%llu", mem_func);
+#endif
         NotifyValue value;
-        value.func = func; value.identity = _atoi64(buf);
+        
+        value.func = func; value.identity = std::atoll(buf);
         value.thd = (thd == nullptr ? thd_ : thd);
         addNotify(key, std::move(value));
         return true;
@@ -128,9 +129,13 @@ public:  /// 通知相关接口(异步)，注意：通知一般是一对多的
         });
 
         char buf[64]{ 0 };
+#ifdef WINDOWS
         (void)sprintf_s(buf, sizeof(buf), "%llu", mem_func);
+#else
+        (void)snprintf(buf, sizeof(buf), "%llu", mem_func);
+#endif
         NotifyValue value;
-        value.func = func; value.identity = _atoi64(buf);
+        value.func = func; value.identity = std::atoll(buf);
         value.thd = (thd == nullptr ? thd_ : thd);
         addNotify(key, std::move(value));
         return true;
@@ -150,9 +155,13 @@ public:  /// 通知相关接口(异步)，注意：通知一般是一对多的
         });
 
         char buf[64]{ 0 };
+#ifdef WINDOWS
         (void)sprintf_s(buf, sizeof(buf), "%llu", mem_func);
+#else
+        (void)snprintf(buf, sizeof(buf), "%llu", mem_func);
+#endif
         NotifyValue value;
-        value.func = func; value.identity = _atoi64(buf);
+        value.func = func; value.identity = std::atoll(buf);
         value.thd = (thd == nullptr ? thd_ : thd);
         addNotify(key, std::move(value));
         return true;
@@ -172,9 +181,13 @@ public:  /// 通知相关接口(异步)，注意：通知一般是一对多的
         });
 
         char buf[64]{ 0 };
+#ifdef WINDOWS
         (void)sprintf_s(buf, sizeof(buf), "%llu", mem_func);
+#else
+        (void)snprintf(buf, sizeof(buf), "%llu", mem_func);
+#endif
         NotifyValue value;
-        value.func = func; value.identity = _atoi64(buf);
+        value.func = func; value.identity = std::atoll(buf);
         value.thd = (thd == nullptr ? thd_ : thd);
         addNotify(key, std::move(value));
         return true;
@@ -210,8 +223,12 @@ public:  /// 通知相关接口(异步)，注意：通知一般是一对多的
         }
 
         char buf[64]{ 0 };
+#ifdef WINDOWS
         (void)sprintf_s(buf, sizeof(buf), "%llu", mem_func);
-        uintptr_t identity = _atoi64(buf);
+#else
+        (void)snprintf(buf, sizeof(buf), "%llu", mem_func);
+#endif
+        uintptr_t identity = std::atoll(buf);
         delNotify(key, identity);
         return true;
     }
@@ -223,8 +240,12 @@ public:  /// 通知相关接口(异步)，注意：通知一般是一对多的
         }
 
         char buf[64]{ 0 };
+#ifdef WINDOWS
         (void)sprintf_s(buf, sizeof(buf), "%llu", mem_func);
-        uintptr_t identity = _atoi64(buf);
+#else
+        (void)snprintf(buf, sizeof(buf), "%llu", mem_func);
+#endif
+        uintptr_t identity = std::atoll(buf);
         delNotify(key, identity);
         return true;
     }
@@ -236,8 +257,12 @@ public:  /// 通知相关接口(异步)，注意：通知一般是一对多的
         }
 
         char buf[64]{ 0 };
+#ifdef WINDOWS
         (void)sprintf_s(buf, sizeof(buf), "%llu", mem_func);
-        uintptr_t identity = _atoi64(buf);
+#else
+        (void)snprintf(buf, sizeof(buf), "%llu", mem_func);
+#endif
+        uintptr_t identity = std::atoll(buf);
         delNotify(key, identity);
         return true;
     }
@@ -249,8 +274,12 @@ public:  /// 通知相关接口(异步)，注意：通知一般是一对多的
         }
 
         char buf[64]{ 0 };
+#ifdef WINDOWS
         (void)sprintf_s(buf, sizeof(buf), "%llu", mem_func);
-        uintptr_t identity = _atoi64(buf);
+#else
+        (void)snprintf(buf, sizeof(buf), "%llu", mem_func);
+#endif
+        uintptr_t identity = std::atoll(buf);
         delNotify(key, identity);
         return true;
     }

@@ -31,14 +31,17 @@ if(CMAKE_BUILD_TYPE AND (CMAKE_BUILD_TYPE STREQUAL "Debug"))
     set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${MAIN_PATH}/bin/linux_debug)
 	# base 模块 lib 路径
 	set(BASE_LIB_PATH ${MAIN_PATH}/lib/linux_debug)
+	set(BASE_LIB_NAME hbased)
 elseif(CMAKE_BUILD_TYPE AND (CMAKE_BUILD_TYPE STREQUAL "Release"))
     set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O3")
     set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${MAIN_PATH}/bin/linux_release)
 	set(BASE_LIB_PATH ${MAIN_PATH}/lib/linux_release)
+	set(BASE_LIB_NAME hbase)
 else()
 	set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O3")
     set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${MAIN_PATH}/bin/linux_release)
 	set(BASE_LIB_PATH ${MAIN_PATH}/lib/linux_release)
+	set(BASE_LIB_NAME hbase)
     # message(${CMAKE_CXX_FLAGS_RELEASE})
 endif()
 
@@ -47,6 +50,8 @@ if(CMAKE_BUILD_CXX_STANDARD AND (CMAKE_BUILD_CXX_STANDARD STREQUAL "c++11"))
 	set(CMAKE_CXX_STANDARD 11)
 elseif(CMAKE_BUILD_CXX_STANDARD AND (CMAKE_BUILD_CXX_STANDARD STREQUAL "c++14"))
 	set(CMAKE_CXX_STANDARD 14)
+elseif(CMAKE_BUILD_CXX_STANDARD AND (CMAKE_BUILD_CXX_STANDARD STREQUAL "c++17"))
+	set(CMAKE_CXX_STANDARD 17)
 else()
 	set(CMAKE_CXX_STANDARD 17)
 endif()
@@ -66,7 +71,7 @@ target_link_libraries(ut_any gtest pthread)
 
 # base64
 add_executable(ut_base64 ${SRC_PATH}/ut_base64.cpp)
-target_link_libraries(ut_base64 gtest halcyon_base pthread)
+target_link_libraries(ut_base64 gtest ${BASE_LIB_NAME} pthread)
 
 # bind
 add_executable(ut_bind ${SRC_PATH}/ut_bind.cpp)
@@ -87,16 +92,16 @@ add_executable(ut_defer ${SRC_PATH}/ut_defer.cpp)
 add_executable(ut_elapsed_timer ${SRC_PATH}/ut_elapsed_timer.cpp)
 
 # file_opt
-add_executable(ut_file_opt ${SRC_PATH}/ut_file_opt.cpp)
-target_link_libraries(ut_file_opt gtest halcyon_base pthread)
+add_executable(ut_file_utils ${SRC_PATH}/ut_file_utils.cpp)
+target_link_libraries(ut_file_utils gtest ${BASE_LIB_NAME} pthread)
 
 # md5
 add_executable(ut_md5 ${SRC_PATH}/ut_md5.cpp)
-target_link_libraries(ut_md5 gtest halcyon_base pthread)
+target_link_libraries(ut_md5 gtest ${BASE_LIB_NAME} pthread)
 
 # message_bus
 add_executable(ut_message_bus ${SRC_PATH}/ut_message_bus.cpp)
-target_link_libraries(ut_message_bus halcyon_base pthread)
+target_link_libraries(ut_message_bus ${BASE_LIB_NAME} pthread)
 
 # optional
 add_executable(ut_optional ${SRC_PATH}/ut_optional.cpp)
@@ -127,7 +132,7 @@ target_link_libraries(ut_thread gtest pthread)
 
 # threadpool
 add_executable(ut_threadpool ${SRC_PATH}/ut_threadpool.cpp)
-target_link_libraries(ut_threadpool halcyon_base pthread)
+target_link_libraries(ut_threadpool ${BASE_LIB_NAME} pthread)
 
 # timestamp
 add_executable(ut_timestamp ${SRC_PATH}/ut_timestamp.cpp)
@@ -146,7 +151,7 @@ target_link_libraries(ut_variant gtest pthread)
 
 # version
 add_executable(ut_version ${SRC_PATH}/ut_version.cpp)
-target_link_libraries(ut_version halcyon_base)
+target_link_libraries(ut_version ${BASE_LIB_NAME})
 
 # weak_callback
 add_executable(ut_weak_callback ${SRC_PATH}/ut_weak_callback.cpp)

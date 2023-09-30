@@ -117,7 +117,12 @@ project 目录下选择对应的版本，可以调整 C++ 的标准。
 
 使用 project 目录下的 CMakeLists.txt。
 
-cmake -D CMAKE_BUILD_CXX_STANDARD=c++11 ..
+cmake -DCMAKE_BUILD_CXX_STANDARD=c++11 -DCMAKE_BUILD_TYPE=Debug ..
+
+| 编译选项                  |  说明                        |
+| ------------------------ | ---------------------------- |
+| CMAKE_BUILD_CXX_STANDARD | C++标准, c++11, c++14, c++17 |
+| CMAKE_BUILD_TYPE         | Debug or Relase              |
 
 ## 优化
 
