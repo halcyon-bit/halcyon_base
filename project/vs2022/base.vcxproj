@@ -85,13 +85,14 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <OutDir>..\..\bin\win64_$(PlatformToolset)_$(Configuration)\</OutDir>
-    <TargetName>$(ProjectName)d</TargetName>
+    <TargetName>h$(ProjectName)d</TargetName>
     <IntDir>tmp\$(MSBuildProjectName)\win64_$(PlatformToolset)_$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>..\..\bin\win64_$(PlatformToolset)_$(Configuration)\</OutDir>
     <IntDir>tmp\$(MSBuildProjectName)\win64_$(PlatformToolset)_$(Configuration)\</IntDir>
+    <TargetName>h$(ProjectName)</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -104,7 +105,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>..\..\include;..\..\src;..\..\thirdparty\sqlite3\3.36.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <ProgramDataBaseFileName>..\..\lib\win64_$(PlatformToolset)_$(Configuration)\$(ProjectName)d.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>..\..\lib\win64_$(PlatformToolset)_$(Configuration)\h$(ProjectName)d.pdb</ProgramDataBaseFileName>
       <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
     </ClCompile>
     <Link>
@@ -128,7 +129,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>..\..\include;..\..\src;..\..\thirdparty\sqlite3\3.36.0\include</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <ProgramDataBaseFileName>..\..\lib\win64_$(PlatformToolset)_$(Configuration)\$(ProjectName).pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>..\..\lib\win64_$(PlatformToolset)_$(Configuration)\h$(ProjectName).pdb</ProgramDataBaseFileName>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
