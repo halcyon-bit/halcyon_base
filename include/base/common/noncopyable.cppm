@@ -1,21 +1,19 @@
-﻿#include <base/common/base_define.h>
+﻿export module noncopyable;
 
-export module noncopyable;
-
-BASE_BEGIN_NAMESPACE
+namespace halcyon::base {
 
 /**
  * @brief   对象语义的基类
  */
-export class noncopyable
+export class NonCopyable
 {
 public:
-    noncopyable(const noncopyable&) = delete;
-    void operator=(const noncopyable&) = delete;
+    NonCopyable(const NonCopyable&) = delete;
+    void operator=(const NonCopyable&) = delete;
 
 protected:
-    noncopyable() = default;
-    ~noncopyable() = default;
+    NonCopyable() = default;
+    ~NonCopyable() = default;
 };
 
-BASE_END_NAMESPACE
+}

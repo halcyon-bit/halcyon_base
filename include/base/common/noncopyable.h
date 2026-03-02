@@ -1,22 +1,22 @@
-﻿#ifndef BASE_NONCOPYABLE_H
-#define BASE_NONCOPYABLE_H
+﻿#ifndef HALCYON_BASE_NONCOPYABLE_H
+#define HALCYON_BASE_NONCOPYABLE_H
 
 #include <base/common/base_define.h>
 
-BASE_BEGIN_NAMESPACE
+HALCYON_BASE_BEGIN_NAMESPACE
 
 /// 对象语义的基类
-class noncopyable
+class NonCopyable
 {
 public:
-    noncopyable(const noncopyable&) = delete;
-    void operator=(const noncopyable&) = delete;
+    NonCopyable(const NonCopyable&) = delete;
+    void operator=(const NonCopyable&) = delete;
 
 protected:
-    noncopyable() = default;
-    ~noncopyable() = default;
+    NonCopyable() = default;
+    ~NonCopyable() = default;
 };
 
-BASE_END_NAMESPACE
+HALCYON_BASE_END_NAMESPACE
 
 #endif

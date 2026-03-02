@@ -1,21 +1,21 @@
-﻿#ifndef BASE_ANY_H
-#define BASE_ANY_H
+﻿#ifndef HALCYON_BASE_ANY_H
+#define HALCYON_BASE_ANY_H
 
-#include <base/utility/type.h>  // std::decay_t, std::enable_if_t
+#include <base/common/base_define.h>
 
 #include <memory>
 #include <typeindex>
 
-BASE_BEGIN_NAMESPACE
+HALCYON_BASE_BEGIN_NAMESPACE
 
 /**
- * @brief   一个特殊的只能容纳一个元素的容器，它可以擦除类型，可以赋给它任何
- *      类型的值，不过在使用的时候需要根据实际类型将 any 对象转换为实际的对象。
+ * @brief  一个特殊的只能容纳一个元素的容器，它可以擦除类型，可以赋给它任何
+ *     类型的值，不过在使用的时候需要根据实际类型将 any 对象转换为实际的对象。
  *
- *      通过继承去擦除类型，基类是不含模板参数的，派生类中才有模板参数，这个模板
- *  参数类型正是赋值的类型。
+ *     通过继承去擦除类型，基类是不含模板参数的，派生类中才有模板参数，这个模板
+ * 参数类型正是赋值的类型。
  *
- * @ps      C++17 中已有 std::any 类型
+ * @ps  C++17 中已有 std::any 类型
  */
 class Any final
 {
@@ -25,15 +25,15 @@ public:
     {}
 
     /**
-     * @brief   拷贝构造函数
+     * @brief  拷贝构造函数
      */
     Any(const Any& that)
-        : ptr_(that.clone())
+        : ptr_(that.Clone())
         , type_(that.type_)
     {}
 
     /**
-     * @brief   移动构造函数
+     * @brief  移动构造函数
      */
     Any(Any&& that) noexcept
         : ptr_(std::move(that.ptr_))
@@ -43,12 +43,12 @@ public:
     }
 
     /**
-     * @brief   赋值操作符重载
+     * @brief  赋值操作符重载
      */
     Any& operator=(const Any& rhs)
     {
         if (this != &rhs) {
-            ptr_ = rhs.clone();
+            ptr_ = rhs.Clone();
             type_ = rhs.type_;
         }
         return *this;
@@ -65,47 +65,50 @@ public:
 
 public:
     /**
-     * @brief   其他类型转换为 Any(排除 Any 类型 std::enable_if)
+     * @brief  其他类型转换为 Any(排除 Any 类型, 使用 std::enable_if 实现)
      */
-    template<typename U, typename = std::enable_if_t<!std::is_same<std::decay_t<U>, Any>::value, U>>
+    template<typename U, typename = 
+        typename std::enable_if<!std::is_same<typename std::decay<U>::type, Any>::value, U>::type>
     Any(U&& value)
-        : ptr_(new Derived<std::decay_t<U>>(std::forward<U>(value)))
-        , type_(std::type_index(typeid(std::decay_t<U>)))
+        : ptr_(new Derived<typename std::decay<U>::type>(std::forward<U>(value)))
+        , type_(std::type_index(typeid(typename std::decay<U>::type)))
     {}
 
-    template<typename U, typename = std::enable_if_t<!std::is_same<std::decay_t<U>, Any>::value, U>>
+    template<typename U, typename = 
+        typename std::enable_if<!std::is_same<typename std::decay<U>::type, Any>::value, U>::type>
     Any& operator=(U&& value)
     {
-        ptr_.reset(new Derived<std::decay_t<U>>(std::forward<U>(value)));
-        type_ = std::type_index(typeid(std::decay_t<U>));
+        ptr_.reset(new Derived<typename std::decay<U>::type>(std::forward<U>(value)));
+        type_ = std::type_index(typeid(typename std::decay<U>::type));
         return *this;
     }
 
 public:
     /**
-     * @brief   Any 是否为空
+     * @brief  检查 Any 是否包含值
      */
-    bool isNull() const
+    bool HasValue() const
     {
-        return !bool(ptr_);
+        return ptr_ != nullptr;
     }
 
     /**
-     * @brief   是否为某种类型
+     * @brief  是否为某种类型
      */
     template<typename U>
-    bool is() const
+    bool IsType() const
     {
         return type_ == std::type_index(typeid(U));
     }
 
     /**
-     * @brief   转换为实际类型(不符合则抛出异常)
+     * @brief  转换为实际类型(不符合则抛出异常)
+     *     exception: std::bad_cast
      */
     template<typename U>
-    U& anyCast()
+    U& AnyCast()
     {
-        if (!is<U>()) {
+        if (!IsType<U>()) {
             // 类型不符
             throw std::bad_cast();
         }
@@ -116,12 +119,12 @@ public:
 private:
     struct Base;
     using BasePtr = std::unique_ptr<Base>;
-    //using BasePtr = std::shared_ptr<Base>;
+    // using BasePtr = std::shared_ptr<Base>;
 
     struct Base
     {
-        virtual ~Base() {};
-        virtual BasePtr clone() const = 0;
+        virtual ~Base() = default;
+        virtual BasePtr Clone() const = 0;
     };
 
     template<typename T>
@@ -132,7 +135,7 @@ private:
             : value_(std::forward<U>(value))
         {}
 
-        BasePtr clone() const override
+        BasePtr Clone() const override
         {
             return BasePtr(new Derived<T>(value_));
         }
@@ -142,24 +145,24 @@ private:
 
 private:
     /**
-     * @brief   创建数据
+     * @brief  创建数据
      */
-    BasePtr clone() const
+    BasePtr Clone() const
     {
         if (ptr_ != nullptr) {
-            return ptr_->clone();
+            return ptr_->Clone();
         } else {
             return nullptr;
         }
     }
 
 private:
-    //! 值
+    // 值
     BasePtr ptr_;
-    //! 类型
+    // 类型
     std::type_index type_;
 };
 
-BASE_END_NAMESPACE
+HALCYON_BASE_END_NAMESPACE
 
 #endif
