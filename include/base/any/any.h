@@ -1,10 +1,11 @@
-﻿#ifndef HALCYON_BASE_ANY_H
+#ifndef HALCYON_BASE_ANY_H
 #define HALCYON_BASE_ANY_H
 
 #include <base/common/base_define.h>
 
 #include <memory>
 #include <typeindex>
+#include <type_traits>
 
 HALCYON_BASE_BEGIN_NAMESPACE
 
@@ -103,7 +104,7 @@ public:
 
     /**
      * @brief  转换为实际类型(不符合则抛出异常)
-     *     exception: std::bad_cast
+     * @throw  std::bad_cast
      */
     template<typename U>
     U& AnyCast()
@@ -113,6 +114,16 @@ public:
             throw std::bad_cast();
         }
         auto derived = static_cast<Derived<U>*>(ptr_.get());
+        return derived->value_;
+    }
+    template<typename U>
+    const U& AnyCast() const
+    {
+        if (!IsType<U>()) {
+            // 类型不符
+            throw std::bad_cast();
+        }
+        auto derived = static_cast<const Derived<U>*>(ptr_.get());
         return derived->value_;
     }
 

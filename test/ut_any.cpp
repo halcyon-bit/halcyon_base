@@ -66,6 +66,15 @@ TEST(AnyTest, DefaultAndBasicTypes)
     EXPECT_TRUE(is_map);
     auto value = a8.AnyCast<std::map<int32_t, std::string>>();
     EXPECT_EQ(mp, value);
+
+    base::Any a9(nullptr);
+    EXPECT_TRUE(a9.HasValue());
+    EXPECT_TRUE(a9.IsType<std::nullptr_t>());
+
+    const base::Any a10 = vec;
+    EXPECT_TRUE(a10.HasValue());
+    EXPECT_TRUE(a10.IsType<std::vector<int32_t>>());
+    EXPECT_EQ(vec, a10.AnyCast<std::vector<int32_t>>());
 }
 
 TEST(AnyTest, CopyAndMoveSemantics)
