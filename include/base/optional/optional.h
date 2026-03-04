@@ -1,189 +1,223 @@
-﻿#ifndef BASE_OPTIONAL_H
-#define BASE_OPTIONAL_H
+#ifndef HALCYON_BASE_OPTIONAL_H
+#define HALCYON_BASE_OPTIONAL_H
 
-#include <base/utility/type.h>  // std::aligned_storage_t
+#include <base/common/base_define.h>
 
+#include <memory>
 #include <stdexcept>
+#include <type_traits>
 
-BASE_BEGIN_NAMESPACE
+HALCYON_BASE_BEGIN_NAMESPACE
+
+class BadOptionalAccess : public std::exception
+{
+public:
+    BadOptionalAccess() = default;
+    ~BadOptionalAccess() override = default;
+    const char* what() const noexcept override
+    {
+        return "Optional has no value";
+    }
+};
 
 /**
- * @brief   Optional 管理一个值，既可以存在也可以不存在的值，只有当 Optional
- *      被初始化之后，这个 Optional 才是有效的。
+ * @brief  Optional 管理一个值，既可以存在也可以不存在的值，只有当 Optional<T>
+ *     被初始化之后，这个 Optional<T> 才是有效的。
  *
- * @ps      C++17 中已有 std::optional 类型
+ * @ps  C++17 中已有 std::optional 类型
  */
 template<typename T>
-class Optional
+class Optional final
 {
-    using value_type = std::aligned_storage_t<sizeof(T), std::alignment_of<T>::value>;
-public:  // 构造函数
-    Optional()
-    {}
+    using value_type = typename std::aligned_storage<sizeof(T), std::alignment_of<T>::value>::type;
+
+public:
+    Optional() = default;
 
     Optional(const T& val)
     {
-        create(val);
+        Create(val);
     }
-
     Optional(T&& val)
     {
-        create(std::forward<T>(val));
+        Create(std::forward<T>(val));
     }
 
     Optional(const Optional& rhs)
     {
-        if (rhs.isInit()) {
-            copy(rhs.data_);
+        if (rhs.HasValue()) {
+            Copy(rhs.data_);
         }
     }
-
     Optional(Optional&& rhs) noexcept
     {
-        if (rhs.isInit()) {
-            move(std::move(rhs.data_));
-            rhs.destroy();
+        if (rhs.HasValue()) {
+            Move(std::move(rhs.data_));
+            rhs.Destroy();
         }
     }
 
     ~Optional()
     {
-        destroy();
+        Destroy();
     }
 
-    // 赋值操作符
     Optional& operator=(const Optional& rhs)
     {
         if (this == &rhs) {
             return *this;
         }
-        destroy();  // 销毁自身
-        if (rhs.isInit()) {
-            copy(rhs.data_);
+        Destroy();  // 销毁自身
+        if (rhs.HasValue()) {
+            Copy(rhs.data_);
         }
         return *this;
     }
-
     Optional& operator=(Optional&& rhs) noexcept
     {
         if (this == &rhs) {
             return *this;
         }
-        destroy();  // 销毁自身
-        if (rhs.isInit()) {
-            move(std::move(rhs.data_));
-            rhs.destroy();
+        Destroy();  // 销毁自身
+        if (rhs.HasValue()) {
+            Move(std::move(rhs.data_));
+            rhs.Destroy();
         }
         return *this;
     }
 
     Optional& operator=(const T& val)
     {
-        destroy();  // 销毁自身
-        create(val);
+        Destroy();  // 销毁自身
+        Create(val);
         return *this;
     }
     Optional& operator=(T&& val)
     {
-        destroy();  // 销毁自身
-        create(std::forward<T>(val));
+        Destroy();  // 销毁自身
+        Create(std::forward<T>(val));
         return *this;
     }
 
 public:
-    /**
-     * @brief   是否初始化
-     */
-    bool isInit() const
+    bool HasValue() const noexcept
     {
-        return init_;
+        return has_value_;
+    }
+
+    operator bool() const noexcept
+    {
+        return has_value_;
+    }
+
+public:
+    T& operator*() noexcept
+    {
+        return Get();
+    }
+    const T& operator*() const noexcept
+    {
+        return Get();
+    }
+
+    T* operator->() noexcept
+    {
+        return std::addressof(Get());
+    }
+    const T* operator->() const noexcept
+    {
+        return std::addressof(Get());
+    }
+
+public:
+    T& Value()
+    {
+        if (HasValue()) {
+            return Get();
+        }
+        throw BadOptionalAccess();
+    }
+
+    const T& Value() const
+    {
+        if (HasValue()) {
+            return Get();
+        }
+        throw BadOptionalAccess();
     }
 
     /**
-     * @brief   构造
+     * @brief  获取值，若无值则返回默认值
+     */
+    template<typename U>
+    T ValueOr(U&& default_value) const
+    {
+        return HasValue() ? Get() : static_cast<T>(std::forward<U>(default_value));
+    }
+
+    /**
+     * @brief  就地构造/重新赋值
      */
     template<typename... Args>
-    void emplace(Args&&... args)
+    T& Emplace(Args&&... args)
     {
-        destroy();
-        create(std::forward<Args>(args)...);
+        Destroy();
+        Create(std::forward<Args>(args)...);
+        return Get();
     }
 
-public:
     /**
-     * @brief   获取数据，若未初始化，则抛出异常
+     * @brief  清空 Optional，销毁内部值
      */
-    T& operator*()
-    {
-        if (isInit()) {
-            return *((T*)(&data_));
-        } else {
-            throw std::logic_error("Optional not initialized");
-        }
-    }
-
-    const T& operator*() const
-    {
-        if (isInit()) {
-            return *((T*)(&data_));
-        } else {
-            throw std::logic_error("Optional not initialized");
-        }
-    }
-
-    T* operator->()
-    {
-        return &operator*();
-    }
-    const T* operator->() const
-    {
-        return &operator*();
-    }
-
-public:
-    /**
-     * @brief   是否初始化
-     */
-    operator bool() const
-    {
-        return init_;
-    }
-
+     void Reset()
+     {
+         Destroy();
+     }
+ 
 private:
     template<typename... Args>
-    void create(Args&&... args)
+    void Create(Args&&... args)
     {
         new (&data_) T(std::forward<Args>(args)...);
-        init_ = true;
+        has_value_ = true;
     }
 
-    void destroy()
+    void Destroy()
     {
-        if (init_) {
-            ((T*)(&data_))->~T();
-            init_ = false;
+        if (!has_value_) {
+            return;
         }
+        reinterpret_cast<T*>(&data_)->~T();
+        has_value_ = false;
     }
 
-    void copy(const value_type& val)
+    void Copy(const value_type& val)
     {
-        new (&data_) T(*((T*)(&val)));
-        init_ = true;
+        new (&data_) T(*reinterpret_cast<const T*>(&val));
+        has_value_ = true;
     }
 
-    void move(value_type&& val)
+    void Move(value_type&& val)
     {
-        new (&data_) T(std::move(*((T*)(&val))));
-        init_ = true;
+        new (&data_) T(std::move(*reinterpret_cast<T*>(&val)));
+        has_value_ = true;
+    }
+
+    T& Get() noexcept
+    {
+        return *reinterpret_cast<T*>(&data_);
+    }
+
+    const T& Get() const noexcept
+    {
+        return *reinterpret_cast<const T*>(&data_);
     }
 
 private:
-    //! 是否初始化
-    bool init_{ false };
-    //! 数据
+    bool has_value_{ false };
     value_type data_;
 };
 
-BASE_END_NAMESPACE
+HALCYON_BASE_END_NAMESPACE
 
 #endif
