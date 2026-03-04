@@ -1,5 +1,5 @@
-﻿#ifndef BASE_SINGLETON_H
-#define BASE_SINGLETON_H
+﻿#ifndef HALCYON_BASE_SINGLETON_H
+#define HALCYON_BASE_SINGLETON_H
 
 #include <base/common/noncopyable.h>
 
@@ -7,7 +7,7 @@
 #include <cstdlib>
 #include <cassert>
 
-BASE_BEGIN_NAMESPACE
+HALCYON_BASE_BEGIN_NAMESPACE
 
 namespace detail
 {
@@ -35,29 +35,29 @@ namespace detail
 
 /// 单例
 template<typename T>
-class Singleton : noncopyable
+class Singleton : NonCopyable
 {
 public:
     Singleton() = delete;
     ~Singleton() = delete;
 
-    static T& instance()
+    static T& GetInstance()
     {
-        std::call_once(flag_, &Singleton::init);
+        std::call_once(flag_, &Singleton::Init);
         assert(value_ != nullptr);
         return *value_;
     }
 
 private:
-    static void init()
+    static void Init()
     {
         value_ = new T();
         if (!detail::has_no_destroy<T>::value) {
-            ::atexit(destory);
+            ::atexit(Destroy);
         }
     }
 
-    static void destory()
+    static void Destroy()
     {
         // 在 C++ 中，类型有 Complete type 和 Incomplete type 之分，
         // 对于 Complete type, 它的大小在编译时是可以确定的，
@@ -82,6 +82,6 @@ std::once_flag Singleton<T>::flag_;
 template<typename T>
 T* Singleton<T>::value_ = nullptr;
 
-BASE_END_NAMESPACE
+HALCYON_BASE_END_NAMESPACE
 
 #endif
